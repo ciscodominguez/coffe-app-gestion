@@ -2,6 +2,13 @@
 
 Lo escribe la skill `arquitecto-c4` en cada corrida (lo más nuevo arriba).
 
+## 2026-11-16 — `13d042b (regeneración forzada)`
+
+- Commit analizado: `13d042b` (2026-11-12)
+- Diagramas actualizados: c4-1-contexto.md, c4-2-contenedores.md, c4-3-componentes-backend.md, c4-3-componentes-frontend.md
+
+- Regeneración forzada: cambió el analizador (no el código); se redibujaron todos los diagramas.
+
 ## 2026-11-16 — `174032e..13d042b`
 
 - Commit analizado: `13d042b` (2026-11-12)

@@ -225,15 +225,16 @@ def md_contexto(m):
 def md_contenedores(m):
     ext = m["backend"]["externos"]
     rt = "realtime" in m["backend"]["paquetes"]
+    caddy = m["deploy"]["caddy"]
     L = ["# C4 · Nivel 2 — Contenedores", "", f"Generado por la skill `arquitecto-c4` desde el commit `{m['commit']}`.", "",
          "```mermaid", "C4Container", "  title COFFE_APP — contenedores",
          '  Person(usuario, "Personal del café", "Dueño, mozo, cocina y cajero")',
          '  System_Boundary(sistema, "COFFE_APP") {',
-         '    Container(spa, "App web", "Angular", "Pantallas por rol; cola de pedidos sin conexión en el navegador")',
-         f'    Container(api, "API", "Spring Boot (Java)", "REST multi-tenant con JWT{" y tiempo real STOMP sobre WebSocket" if rt else ""}")',
-         f'    ContainerDb(db, "Base de datos", "MySQL + Flyway", "{m["backend"]["entidades"]} entidades; datos separados por café")']
-    if m["deploy"]["caddy"]:
+         '    Container(spa, "App web", "Angular", "Pantallas por rol; cola de pedidos sin conexión en el navegador")']
+    if caddy:
         L.append('    Container(proxy, "Proxy", "Caddy", "HTTPS automático; sirve la app y reenvía /api")')
+    L += [f'    Container(api, "API", "Spring Boot (Java)", "REST multi-tenant con JWT{" y tiempo real STOMP sobre WebSocket" if rt else ""}")',
+          f'    ContainerDb(db, "Base de datos", "MySQL + Flyway", "{m["backend"]["entidades"]} entidades; datos separados por café")']
     if m["deploy"]["backups"]:
         L.append('    Container(backup, "Copias de seguridad", "Script + rclone", "Backup nocturno y prueba de restauración")')
     L.append("  }")
@@ -241,15 +242,16 @@ def md_contenedores(m):
         L.append('  System_Ext(mp, "Mercado Pago", "API de cobros")')
     if "smtp" in ext:
         L.append('  System_Ext(smtp, "Servidor de mail", "SMTP")')
-    if m["deploy"]["caddy"]:
-        L += ['  Rel(usuario, proxy, "Usa", "HTTPS")', '  Rel(proxy, spa, "Sirve")', '  Rel(proxy, api, "Reenvía /api", "HTTP")']
+    if caddy:
+        L += ['  Rel(usuario, proxy, "Entra a la app", "HTTPS")', '  Rel(proxy, spa, "Sirve los archivos de la app")',
+              f'  Rel(spa, proxy, "Llama a /api{" y abre el WebSocket" if rt else ""}", "JSON/HTTPS{", WSS" if rt else ""}")',
+              f'  Rel(proxy, api, "Reenvía /api{" y /ws" if rt else ""}", "HTTP")']
+        L += ['  UpdateRelStyle(proxy, spa, $offsetY="-40")', '  UpdateRelStyle(spa, proxy, $offsetY="20")']
     else:
-        L.append('  Rel(usuario, spa, "Usa", "HTTPS")')
-    L.append('  Rel(spa, api, "Llama", "JSON/HTTPS")')
-    if rt:
-        L.append('  Rel(api, spa, "Avisa cambios de pedidos", "STOMP/WebSocket")')
-        L.append('  UpdateRelStyle(spa, api, $offsetY="-40")')
-        L.append('  UpdateRelStyle(api, spa, $offsetY="30")')
+        L += ['  Rel(usuario, spa, "Usa", "HTTPS")', '  Rel(spa, api, "Llama", "JSON/HTTPS")']
+        if rt:
+            L += ['  Rel(api, spa, "Avisa cambios de pedidos", "STOMP/WebSocket")',
+                  '  UpdateRelStyle(spa, api, $offsetY="-40")', '  UpdateRelStyle(api, spa, $offsetY="30")']
     L.append('  Rel(api, db, "Lee y escribe", "JPA")')
     if "mercadopago_api" in ext:
         L.append('  Rel(api, mp, "Cobros QR / webhooks", "HTTPS")')
@@ -257,7 +259,7 @@ def md_contenedores(m):
         L.append('  Rel(api, smtp, "Envía mails", "SMTP")')
     if m["deploy"]["backups"]:
         L.append('  Rel(backup, db, "Vuelca la base", "mysqldump")')
-    L += ["```", ""]
+    L += ['  UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="1")', "```", ""]
     return "\n".join(L)
 
 
@@ -422,7 +424,9 @@ def main():
     viejo = json.loads(MODELO.read_text(encoding="utf-8")) if MODELO.exists() else None
     ahora = datetime.now().isoformat(timespec="seconds")
 
-    if estado and not a.forzar:
+    if estado and a.forzar:
+        cambiados, relevantes, rango = [], [], f"{commit[:7]} (regeneración forzada)"
+    elif estado:
         base = estado["ultimo_commit"]
         if git("rev-parse", base).strip() == commit:
             print(f"Sin cambios: {commit[:7]} ya es el último commit analizado.")
@@ -438,6 +442,10 @@ def main():
         kv, kn = claves_diagrama(viejo), claves_diagrama(nuevo)
         a_regenerar = [k for k in DIAGRAMAS if json.dumps(kv[k], sort_keys=True) != json.dumps(kn[k], sort_keys=True)]
         cambios = diferencias(viejo, nuevo)
+    elif viejo and a.forzar:
+        a_regenerar = list(DIAGRAMAS)
+        cambios = diferencias(viejo, nuevo) or ["Regeneración forzada: cambió el analizador (no el código); "
+                                                "se redibujaron todos los diagramas."]
     else:
         a_regenerar, cambios = list(DIAGRAMAS), ["Primera versión del modelo C4 (contexto, contenedores y componentes)."]
 
