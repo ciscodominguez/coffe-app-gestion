@@ -1,0 +1,746 @@
+{
+  "commit": "3c4df30",
+  "fecha_commit": "2026-11-03T19:11:26-03:00",
+  "backend": {
+    "paquetes": {
+      "auth": {
+        "controllers": [
+          "AuthController"
+        ],
+        "services": [
+          "AuthService",
+          "LoginAttemptService",
+          "PasswordResetService"
+        ],
+        "repositories": [
+          "PasswordResetTokenRepository"
+        ],
+        "rutas": [
+          "/auth"
+        ],
+        "otros": []
+      },
+      "business": {
+        "controllers": [
+          "BusinessController"
+        ],
+        "services": [
+          "BusinessService"
+        ],
+        "repositories": [
+          "BusinessRepository"
+        ],
+        "rutas": [
+          "/businesses"
+        ],
+        "otros": []
+      },
+      "cash": {
+        "controllers": [
+          "CashSessionController"
+        ],
+        "services": [
+          "CashSessionService"
+        ],
+        "repositories": [
+          "CashMovementRepository",
+          "CashSessionDenominationRepository",
+          "CashSessionRepository"
+        ],
+        "rutas": [
+          "/cash-sessions"
+        ],
+        "otros": []
+      },
+      "category": {
+        "controllers": [
+          "CategoryController"
+        ],
+        "services": [
+          "CategoryService"
+        ],
+        "repositories": [
+          "CategoryRepository"
+        ],
+        "rutas": [
+          "/categories"
+        ],
+        "otros": []
+      },
+      "crypto": {
+        "controllers": [],
+        "services": [],
+        "repositories": [],
+        "rutas": [],
+        "otros": [
+          "SecretCipher"
+        ]
+      },
+      "dashboard": {
+        "controllers": [
+          "DashboardController"
+        ],
+        "services": [
+          "DashboardService"
+        ],
+        "repositories": [],
+        "rutas": [
+          "/dashboard"
+        ],
+        "otros": []
+      },
+      "discount": {
+        "controllers": [
+          "DiscountController"
+        ],
+        "services": [
+          "DiscountService"
+        ],
+        "repositories": [
+          "DiscountRepository"
+        ],
+        "rutas": [
+          "/discounts"
+        ],
+        "otros": []
+      },
+      "excel": {
+        "controllers": [],
+        "services": [],
+        "repositories": [],
+        "rutas": [],
+        "otros": [
+          "XlsxWriter"
+        ]
+      },
+      "location": {
+        "controllers": [
+          "LocationController"
+        ],
+        "services": [
+          "LocationService"
+        ],
+        "repositories": [
+          "LocationRepository"
+        ],
+        "rutas": [
+          "/locations"
+        ],
+        "otros": []
+      },
+      "mail": {
+        "controllers": [],
+        "services": [
+          "MailService"
+        ],
+        "repositories": [],
+        "rutas": [],
+        "otros": []
+      },
+      "media": {
+        "controllers": [
+          "MediaController"
+        ],
+        "services": [
+          "FileStorageService"
+        ],
+        "repositories": [],
+        "rutas": [
+          "/media"
+        ],
+        "otros": []
+      },
+      "mercadopago": {
+        "controllers": [
+          "MercadoPagoController",
+          "MercadoPagoWebhookController",
+          "QrChargeController"
+        ],
+        "services": [
+          "MercadoPagoAccountService",
+          "QrChargeService"
+        ],
+        "repositories": [
+          "MercadoPagoAccountRepository",
+          "MpQrChargeRepository"
+        ],
+        "rutas": [
+          "/mercadopago",
+          "/orders",
+          "/qr-charges",
+          "/webhooks"
+        ],
+        "otros": [
+          "HttpMercadoPagoClient",
+          "MercadoPagoApiException",
+          "MercadoPagoClient",
+          "MercadoPagoConfig",
+          "MercadoPagoProperties",
+          "QrChargeSweeper"
+        ]
+      },
+      "option": {
+        "controllers": [
+          "OptionGroupController"
+        ],
+        "services": [
+          "OptionGroupService"
+        ],
+        "repositories": [
+          "OptionGroupRepository",
+          "OptionItemRepository",
+          "OrderItemOptionRepository",
+          "ProductOptionGroupRepository"
+        ],
+        "rutas": [
+          "/option-groups",
+          "/products"
+        ],
+        "otros": [
+          "OptionSelector"
+        ]
+      },
+      "order": {
+        "controllers": [
+          "OrderController"
+        ],
+        "services": [
+          "OrderService"
+        ],
+        "repositories": [
+          "OrderDiscountRepository",
+          "OrderItemRepository",
+          "OrderPaymentRepository",
+          "OrderRepository"
+        ],
+        "rutas": [
+          "/orders"
+        ],
+        "otros": [
+          "OrderEventPublisher",
+          "OrderSubscriptionInterceptor",
+          "OrderTopics"
+        ]
+      },
+      "product": {
+        "controllers": [
+          "ProductController"
+        ],
+        "services": [
+          "ProductService"
+        ],
+        "repositories": [
+          "ProductRepository"
+        ],
+        "rutas": [
+          "/products"
+        ],
+        "otros": []
+      },
+      "realtime": {
+        "controllers": [],
+        "services": [],
+        "repositories": [],
+        "rutas": [],
+        "otros": [
+          "WebSocketConfig"
+        ]
+      },
+      "security": {
+        "controllers": [],
+        "services": [
+          "JwtService"
+        ],
+        "repositories": [],
+        "rutas": [],
+        "otros": [
+          "AuthenticatedUser",
+          "BaseEntity",
+          "JwtAuthenticationFilter",
+          "JwtProperties",
+          "RestAccessDeniedHandler",
+          "RestAuthenticationEntryPoint",
+          "SecurityConfig",
+          "SessionValidator",
+          "TenantContext",
+          "TenantFilterInterceptor",
+          "TenantFilters",
+          "TenantSafeRepositoryImpl",
+          "TenantScopedEntity",
+          "WebSocketAuthHandshakeInterceptor"
+        ]
+      },
+      "stock": {
+        "controllers": [
+          "StockController"
+        ],
+        "services": [
+          "StockService"
+        ],
+        "repositories": [
+          "IngredientRepository",
+          "IngredientStockAdjustmentRepository",
+          "IngredientStockRepository",
+          "ProductRecipeItemRepository",
+          "ProductStockAdjustmentRepository",
+          "ProductStockRepository"
+        ],
+        "rutas": [
+          "/stock"
+        ],
+        "otros": []
+      },
+      "table": {
+        "controllers": [
+          "TableController"
+        ],
+        "services": [
+          "TableService"
+        ],
+        "repositories": [
+          "TableRepository"
+        ],
+        "rutas": [
+          "/tables"
+        ],
+        "otros": []
+      },
+      "user": {
+        "controllers": [
+          "UserController"
+        ],
+        "services": [
+          "UserService"
+        ],
+        "repositories": [
+          "UserRepository"
+        ],
+        "rutas": [
+          "/users"
+        ],
+        "otros": []
+      }
+    },
+    "dependencias": [
+      [
+        "auth",
+        "business"
+      ],
+      [
+        "auth",
+        "location"
+      ],
+      [
+        "auth",
+        "mail"
+      ],
+      [
+        "auth",
+        "security"
+      ],
+      [
+        "auth",
+        "user"
+      ],
+      [
+        "business",
+        "security"
+      ],
+      [
+        "cash",
+        "location"
+      ],
+      [
+        "cash",
+        "mercadopago"
+      ],
+      [
+        "cash",
+        "order"
+      ],
+      [
+        "cash",
+        "security"
+      ],
+      [
+        "cash",
+        "user"
+      ],
+      [
+        "dashboard",
+        "location"
+      ],
+      [
+        "dashboard",
+        "order"
+      ],
+      [
+        "dashboard",
+        "stock"
+      ],
+      [
+        "mercadopago",
+        "cash"
+      ],
+      [
+        "mercadopago",
+        "crypto"
+      ],
+      [
+        "mercadopago",
+        "location"
+      ],
+      [
+        "mercadopago",
+        "order"
+      ],
+      [
+        "mercadopago",
+        "security"
+      ],
+      [
+        "option",
+        "product"
+      ],
+      [
+        "option",
+        "stock"
+      ],
+      [
+        "order",
+        "cash"
+      ],
+      [
+        "order",
+        "discount"
+      ],
+      [
+        "order",
+        "location"
+      ],
+      [
+        "order",
+        "mercadopago"
+      ],
+      [
+        "order",
+        "option"
+      ],
+      [
+        "order",
+        "product"
+      ],
+      [
+        "order",
+        "security"
+      ],
+      [
+        "order",
+        "stock"
+      ],
+      [
+        "order",
+        "table"
+      ],
+      [
+        "order",
+        "user"
+      ],
+      [
+        "product",
+        "category"
+      ],
+      [
+        "realtime",
+        "order"
+      ],
+      [
+        "realtime",
+        "security"
+      ],
+      [
+        "security",
+        "business"
+      ],
+      [
+        "security",
+        "location"
+      ],
+      [
+        "security",
+        "user"
+      ],
+      [
+        "stock",
+        "location"
+      ],
+      [
+        "stock",
+        "product"
+      ],
+      [
+        "stock",
+        "security"
+      ],
+      [
+        "stock",
+        "user"
+      ],
+      [
+        "table",
+        "location"
+      ],
+      [
+        "user",
+        "security"
+      ]
+    ],
+    "externos": [
+      "mercadopago_api",
+      "smtp"
+    ],
+    "entidades": 27
+  },
+  "frontend": {
+    "servicios": {
+      "ApiService": {
+        "archivo": "core/services/api.service.ts",
+        "tipo": "api",
+        "rutas": []
+      },
+      "AuthService": {
+        "archivo": "core/services/auth.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/auth"
+        ]
+      },
+      "BusinessService": {
+        "archivo": "core/services/business.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/businesses",
+          "/locations"
+        ]
+      },
+      "CashSessionService": {
+        "archivo": "core/services/cash-session.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/cash-sessions"
+        ]
+      },
+      "CategoryService": {
+        "archivo": "core/services/catalog.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/categories",
+          "/products"
+        ]
+      },
+      "DashboardService": {
+        "archivo": "core/services/dashboard.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/dashboard"
+        ]
+      },
+      "LayoutService": {
+        "archivo": "core/services/layout.service.ts",
+        "tipo": "ui",
+        "rutas": []
+      },
+      "LocationResolverService": {
+        "archivo": "core/services/location-resolver.service.ts",
+        "tipo": "ui",
+        "rutas": []
+      },
+      "MediaService": {
+        "archivo": "core/services/media.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/media"
+        ]
+      },
+      "MercadoPagoService": {
+        "archivo": "core/services/mercadopago.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/mercadopago",
+          "/orders",
+          "/qr-charges"
+        ]
+      },
+      "OfflineOrderQueueService": {
+        "archivo": "core/services/offline-order-queue.service.ts",
+        "tipo": "offline",
+        "rutas": []
+      },
+      "OrderService": {
+        "archivo": "core/services/order.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/orders"
+        ]
+      },
+      "OrdersRealtimeService": {
+        "archivo": "core/services/orders-realtime.service.ts",
+        "tipo": "realtime",
+        "rutas": []
+      },
+      "PrintContextService": {
+        "archivo": "core/services/print-context.service.ts",
+        "tipo": "ui",
+        "rutas": []
+      },
+      "ReportService": {
+        "archivo": "features/reports/report.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/reports"
+        ]
+      },
+      "StockService": {
+        "archivo": "core/services/stock.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/stock"
+        ]
+      },
+      "TableService": {
+        "archivo": "core/services/table.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/tables"
+        ]
+      },
+      "ThemeService": {
+        "archivo": "core/services/theme.service.ts",
+        "tipo": "ui",
+        "rutas": []
+      },
+      "TicketPrintService": {
+        "archivo": "core/services/ticket-print.service.ts",
+        "tipo": "ui",
+        "rutas": []
+      },
+      "ToastService": {
+        "archivo": "core/services/toast.service.ts",
+        "tipo": "ui",
+        "rutas": []
+      },
+      "UserService": {
+        "archivo": "core/services/user.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/users"
+        ]
+      }
+    },
+    "pantallas": {
+      "account": [
+        "AuthService",
+        "ThemeService",
+        "ToastService"
+      ],
+      "business": [
+        "AuthService",
+        "BusinessService",
+        "ToastService"
+      ],
+      "cash": [
+        "AuthService",
+        "BusinessService",
+        "CashSessionService",
+        "TicketPrintService",
+        "ToastService"
+      ],
+      "catalog": [
+        "AuthService",
+        "CategoryService",
+        "MediaService",
+        "StockService",
+        "ToastService"
+      ],
+      "dashboard": [
+        "AuthService",
+        "BusinessService",
+        "CashSessionService",
+        "CategoryService",
+        "DashboardService",
+        "TableService",
+        "UserService"
+      ],
+      "kds": [
+        "AuthService",
+        "LayoutService",
+        "LocationResolverService",
+        "OrderService",
+        "OrdersRealtimeService",
+        "PrintContextService",
+        "TableService",
+        "TicketPrintService",
+        "ToastService"
+      ],
+      "locations": [
+        "AuthService",
+        "ToastService"
+      ],
+      "login": [
+        "AuthService",
+        "ThemeService"
+      ],
+      "mercadopago": [
+        "MercadoPagoService",
+        "ToastService"
+      ],
+      "password": [
+        "AuthService",
+        "ThemeService"
+      ],
+      "register": [
+        "AuthService",
+        "ThemeService",
+        "ToastService"
+      ],
+      "reports": [
+        "ApiService",
+        "ReportService",
+        "ToastService"
+      ],
+      "stock": [
+        "AuthService",
+        "StockService",
+        "ToastService"
+      ],
+      "tables": [
+        "AuthService",
+        "LocationResolverService",
+        "TableService",
+        "ToastService"
+      ],
+      "users": [
+        "AuthService",
+        "ToastService",
+        "UserService"
+      ],
+      "waiter": [
+        "AuthService",
+        "CategoryService",
+        "LocationResolverService",
+        "OfflineOrderQueueService",
+        "OrderService",
+        "OrdersRealtimeService",
+        "PrintContextService",
+        "TableService",
+        "TicketPrintService",
+        "ToastService"
+      ]
+    }
+  },
+  "deploy": {
+    "caddy": false,
+    "backups": false,
+    "compose": false
+  }
+}
