@@ -2,6 +2,51 @@
 
 Lo escribe la skill `arquitecto-c4` en cada corrida (lo más nuevo arriba).
 
+## 2026-11-16 — `174032e..13d042b`
+
+- Commit analizado: `13d042b` (2026-11-12)
+- Archivos cambiados desde la corrida anterior: 104 (89 de código o despliegue)
+- Diagramas actualizados: c4-1-contexto.md, c4-2-contenedores.md, c4-3-componentes-backend.md, c4-3-componentes-frontend.md
+
+- Componente nuevo en la API: **Plano del salón** (`floor`, rutas /floor).
+- Componente nuevo en la API: **Legales** (`legal`, rutas /legal).
+- Componente nuevo en la API: **Superadmin** (`platform`, rutas /platform).
+- Componente nuevo en la API: **Soporte** (`support`, rutas /support).
+- Pedidos: repositories nuevos OrderPaymentItemRepository.
+- Dependencia nueva: Autenticación → Legales.
+- Dependencia nueva: Autenticación → Superadmin.
+- Dependencia nueva: Suscripción → Superadmin.
+- Dependencia nueva: Plano del salón → Locales.
+- Dependencia nueva: Plano del salón → Mesas.
+- Dependencia nueva: Legales → Suscripción.
+- Dependencia nueva: Legales → Negocios.
+- Dependencia nueva: Legales → Mail.
+- Dependencia nueva: Legales → Superadmin.
+- Dependencia nueva: Legales → Seguridad y multi-tenant.
+- Dependencia nueva: Superadmin → Suscripción.
+- Dependencia nueva: Superadmin → Negocios.
+- Dependencia nueva: Superadmin → Legales.
+- Dependencia nueva: Superadmin → Soporte.
+- Dependencia nueva: Seguridad y multi-tenant → Superadmin.
+- Dependencia nueva: Soporte → Suscripción.
+- Dependencia nueva: Soporte → Negocios.
+- Dependencia nueva: Soporte → Mail.
+- Dependencia nueva: Soporte → Superadmin.
+- Dependencia nueva: Soporte → Seguridad y multi-tenant.
+- Dependencia nueva: Soporte → Usuarios.
+- Entidades JPA: 30 → 38.
+- Despliegue: aparece caddy en deploy/.
+- Despliegue: aparece backups en deploy/.
+- Despliegue: aparece compose en deploy/.
+- Pantalla nueva en la app: **delivery-apps**.
+- Pantalla nueva en la app: **subscription**.
+- Service nuevo en el front: DiagnosticsService (ui).
+- Service nuevo en el front: FloorService (http).
+- Service nuevo en el front: SalesChannelService (http).
+- Service nuevo en el front: SubscriptionService (http).
+- Service nuevo en el front: SupportService (http).
+- Service nuevo en el front: TourService (ui).
+
 ## 2026-11-16 — `3c4df30..174032e`
 
 - Commit analizado: `174032e` (2026-11-06)

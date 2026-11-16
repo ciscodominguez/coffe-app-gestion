@@ -1,6 +1,6 @@
 {
-  "commit": "174032e",
-  "fecha_commit": "2026-11-06T18:23:57-03:00",
+  "commit": "13d042b",
+  "fecha_commit": "2026-11-12T15:01:18-03:00",
   "backend": {
     "paquetes": {
       "auth": {
@@ -150,6 +150,42 @@
           "XlsxWriter"
         ]
       },
+      "floor": {
+        "controllers": [
+          "FloorController"
+        ],
+        "services": [
+          "FloorService"
+        ],
+        "repositories": [
+          "FloorAreaRepository",
+          "FloorItemRepository"
+        ],
+        "rutas": [
+          "/floor"
+        ],
+        "otros": []
+      },
+      "legal": {
+        "controllers": [
+          "LegalController"
+        ],
+        "services": [
+          "LegalService",
+          "ServiceRequestService"
+        ],
+        "repositories": [
+          "LegalAcceptanceRepository",
+          "ServiceRequestRepository"
+        ],
+        "rutas": [
+          "/legal"
+        ],
+        "otros": [
+          "ClientInfo",
+          "LegalProperties"
+        ]
+      },
       "location": {
         "controllers": [
           "LocationController"
@@ -247,6 +283,7 @@
         "repositories": [
           "OrderDiscountRepository",
           "OrderItemRepository",
+          "OrderPaymentItemRepository",
           "OrderPaymentRepository",
           "OrderRepository"
         ],
@@ -257,6 +294,25 @@
           "OrderEventPublisher",
           "OrderSubscriptionInterceptor",
           "OrderTopics"
+        ]
+      },
+      "platform": {
+        "controllers": [
+          "PlatformController"
+        ],
+        "services": [
+          "PlatformService"
+        ],
+        "repositories": [
+          "PlatformActionRepository",
+          "PlatformAdminRepository"
+        ],
+        "rutas": [
+          "/platform"
+        ],
+        "otros": [
+          "PlatformAdminBootstrap",
+          "PlatformProperties"
         ]
       },
       "product": {
@@ -340,6 +396,21 @@
         ],
         "otros": []
       },
+      "support": {
+        "controllers": [
+          "SupportController"
+        ],
+        "services": [
+          "SupportService"
+        ],
+        "repositories": [
+          "SupportRequestRepository"
+        ],
+        "rutas": [
+          "/support"
+        ],
+        "otros": []
+      },
       "table": {
         "controllers": [
           "TableController"
@@ -382,11 +453,19 @@
       ],
       [
         "auth",
+        "legal"
+      ],
+      [
+        "auth",
         "location"
       ],
       [
         "auth",
         "mail"
+      ],
+      [
+        "auth",
+        "platform"
       ],
       [
         "auth",
@@ -403,6 +482,10 @@
       [
         "billing",
         "mercadopago"
+      ],
+      [
+        "billing",
+        "platform"
       ],
       [
         "billing",
@@ -447,6 +530,34 @@
       [
         "dashboard",
         "stock"
+      ],
+      [
+        "floor",
+        "location"
+      ],
+      [
+        "floor",
+        "table"
+      ],
+      [
+        "legal",
+        "billing"
+      ],
+      [
+        "legal",
+        "business"
+      ],
+      [
+        "legal",
+        "mail"
+      ],
+      [
+        "legal",
+        "platform"
+      ],
+      [
+        "legal",
+        "security"
       ],
       [
         "mercadopago",
@@ -521,6 +632,22 @@
         "user"
       ],
       [
+        "platform",
+        "billing"
+      ],
+      [
+        "platform",
+        "business"
+      ],
+      [
+        "platform",
+        "legal"
+      ],
+      [
+        "platform",
+        "support"
+      ],
+      [
         "product",
         "category"
       ],
@@ -570,6 +697,10 @@
       ],
       [
         "security",
+        "platform"
+      ],
+      [
+        "security",
         "user"
       ],
       [
@@ -589,6 +720,30 @@
         "user"
       ],
       [
+        "support",
+        "billing"
+      ],
+      [
+        "support",
+        "business"
+      ],
+      [
+        "support",
+        "mail"
+      ],
+      [
+        "support",
+        "platform"
+      ],
+      [
+        "support",
+        "security"
+      ],
+      [
+        "support",
+        "user"
+      ],
+      [
         "table",
         "location"
       ],
@@ -601,7 +756,7 @@
       "mercadopago_api",
       "smtp"
     ],
-    "entidades": 30
+    "entidades": 38
   },
   "frontend": {
     "servicios": {
@@ -647,11 +802,23 @@
           "/dashboard"
         ]
       },
+      "DiagnosticsService": {
+        "archivo": "core/services/diagnostics.service.ts",
+        "tipo": "ui",
+        "rutas": []
+      },
       "DiscountService": {
         "archivo": "core/services/discount.service.ts",
         "tipo": "http",
         "rutas": [
           "/discounts"
+        ]
+      },
+      "FloorService": {
+        "archivo": "core/services/floor.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/floor"
         ]
       },
       "LayoutService": {
@@ -731,11 +898,32 @@
           "/reports"
         ]
       },
+      "SalesChannelService": {
+        "archivo": "core/services/sales-channel.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/sales-channels"
+        ]
+      },
       "StockService": {
         "archivo": "core/services/stock.service.ts",
         "tipo": "http",
         "rutas": [
           "/stock"
+        ]
+      },
+      "SubscriptionService": {
+        "archivo": "core/services/subscription.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/subscription"
+        ]
+      },
+      "SupportService": {
+        "archivo": "core/services/support.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/support"
         ]
       },
       "TableService": {
@@ -757,6 +945,11 @@
       },
       "ToastService": {
         "archivo": "core/services/toast.service.ts",
+        "tipo": "ui",
+        "rutas": []
+      },
+      "TourService": {
+        "archivo": "core/services/tour.service.ts",
         "tipo": "ui",
         "rutas": []
       },
@@ -804,6 +997,11 @@
         "TableService",
         "UserService"
       ],
+      "delivery-apps": [
+        "LocationResolverService",
+        "SalesChannelService",
+        "ToastService"
+      ],
       "kds": [
         "AuthService",
         "LayoutService",
@@ -849,6 +1047,11 @@
         "StockService",
         "ToastService"
       ],
+      "subscription": [
+        "AuthService",
+        "SubscriptionService",
+        "ToastService"
+      ],
       "superadmin": [
         "ApiService",
         "AuthService",
@@ -858,6 +1061,7 @@
       ],
       "tables": [
         "AuthService",
+        "FloorService",
         "LocationResolverService",
         "TableService",
         "ToastService"
@@ -870,12 +1074,14 @@
       "waiter": [
         "AuthService",
         "CategoryService",
+        "FloorService",
         "LocationResolverService",
         "OfflineOrderQueueService",
         "OptionGroupService",
         "OrderService",
         "OrdersRealtimeService",
         "PrintContextService",
+        "SalesChannelService",
         "TableService",
         "TicketPrintService",
         "ToastService"
@@ -883,8 +1089,8 @@
     }
   },
   "deploy": {
-    "caddy": false,
-    "backups": false,
-    "compose": false
+    "caddy": true,
+    "backups": true,
+    "compose": true
   }
 }
