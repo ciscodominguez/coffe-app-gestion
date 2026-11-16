@@ -295,7 +295,8 @@ def escribir_md(r):
           f"- Dependencias: las del tablero (campo «Depende de» de cada ticket); las de los tickets reconstruidos "
           "se infirieron de git y de los títulos."]
     if r["deseable"]:
-        L.append(f"- Fuera del alcance comprometido (deseable): {', '.join(f'{x['id']} ({x['sp']} SP)' for x in r['deseable'])}.")
+        deseables = ", ".join(f"{x['id']} ({x['sp']} SP)" for x in r["deseable"])
+        L.append(f"- Fuera del alcance comprometido (deseable): {deseables}.")
     L += [""] + mermaid(r) + ["", "## Cuellos de botella y bus factor",
                               "| Carpeta | Bus factor | Quién la conoce (más de la mitad de las líneas) |", "|---|---|---|"]
     for c, v in r["bus_factor"].items():
