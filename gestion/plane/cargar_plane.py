@@ -206,6 +206,11 @@ def main():
             if isinstance(r, requests.Response):
                 if r.status_code == 409:
                     existentes.update({l["name"]: l["id"] for l in api.lista(f"{P}/labels/")})
+                elif r.status_code == 403:
+                    if not getattr(etiqueta, "avisado", False):
+                        print("⚠️  Tu rol en el proyecto no puede crear etiquetas: los issues se cargan sin ellas.")
+                        etiqueta.avisado = True
+                    return None
                 else:
                     fallar(r, f"crear la etiqueta {nombre}")
             else:
@@ -254,10 +259,13 @@ def main():
         etiquetas = [etiqueta(t["modulo"].lower(), COLOR_AREA.get(t["modulo"], "#94a3b8")),
                      etiqueta(f"sp:{t['sp']}", "#0ea5e9"),
                      etiqueta("origen:git" if t["origen"] == "git" else "origen:plan", "#a3a3a3")]
+        etiquetas = [e for e in etiquetas if e]
         resp = t["responsable"]
         asignados = [asignado[resp]] if resp and asignado.get(resp) else []
         if resp and not asignados:
-            etiquetas.append(etiqueta(f"autor:{resp}", "#f59e0b"))
+            e = etiqueta(f"autor:{resp}", "#f59e0b")
+            if e:
+                etiquetas.append(e)
         cuerpo = {
             "name": t["titulo"],
             "description_html": descripcion(t, repo),

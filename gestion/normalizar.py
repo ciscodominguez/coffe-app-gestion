@@ -99,15 +99,25 @@ def tareas_de_plane(eq):
         for i in lista(f"{P}/modules/{m['id']}/module-issues/"):
             modulo_de[i.get("id") or i.get("issue")] = m["name"]
     base_git = {t["id"]: t for t in tareas_de_tickets()}
+    # Los issues cargados desde la sesión web no tienen external_id: se reconocen por gestion/plane/ids-plane.json.
+    clave_de_id = {v["id"]: k for k, v in (leer_json(RAIZ / "gestion" / "plane" / "ids-plane.json", {}) or {}).items()}
     out = []
-    for i in lista(f"{P}/issues/"):
+    issues = lista(f"{P}/issues/")
+    # Los issues de ejemplo que Plane crea con el proyecto ("Welcome to Plane", etc.) no son del equipo:
+    # se ignoran los que no están en el mapeo y se crearon antes que el primer ticket nuestro.
+    creados = [i.get("created_at") or "" for i in issues if i["id"] in clave_de_id]
+    umbral = min(creados) if creados else ""
+    for i in issues:
+        if i["id"] not in clave_de_id and not i.get("external_id") and (i.get("created_at") or "") < umbral:
+            continue
         nombres = [etiquetas.get(x, "") for x in i.get("labels", [])]
         sp = next((int(n[3:]) for n in nombres if n.startswith("sp:") and n[3:].isdigit()), None)
         codigo = f"{ident}-{i['sequence_id']}"
-        clave = i.get("external_id") or codigo
+        clave = i.get("external_id") or clave_de_id.get(i["id"]) or codigo
         previo = base_git.get(clave, {})
-        asignado = next((miembro.get(a) for a in i.get("assignees", []) if miembro.get(a)), None) or next(
-            (n.split(":", 1)[1] for n in nombres if n.startswith("autor:")), None)
+        asignado = next((miembro.get(a) for a in (i.get("assignees") or i.get("assignee_ids") or [])
+                         if miembro.get(a)), None) or next(
+            (n.split(":", 1)[1] for n in nombres if n.startswith("autor:")), None) or previo.get("asignado")
         estado = estados.get(i["state"], "Todo")
         terminada = i.get("target_date") or (i.get("completed_at") or "")[:10] or None
         out.append(dict(

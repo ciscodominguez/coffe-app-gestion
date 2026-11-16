@@ -1,0 +1,27 @@
+{
+  "proyecto": {
+    "id": "24c58240-cc91-488d-858b-c898ea0b7851",
+    "identifier": "GESTI",
+    "nombre": "Gestion de desarrollo de soft"
+  },
+  "ciclos": {
+    "semana-2026-44": "8e51f222-9693-4bde-a923-d7d8b0259d92",
+    "semana-2026-45": "2262a11d-d41f-4c1c-bafe-bda289be70cb",
+    "semana-2026-46": "3ff61785-bdae-4962-a55a-fa892170abe9",
+    "semana-2026-47": "62f098ae-fdbf-4887-a8c9-514500629727",
+    "semana-2026-48": "8841009e-ecd2-45eb-b31e-e51a2c856e13"
+  },
+  "modulos": {
+    "Base del proyecto": "7a199dd1-c2ab-4072-8a82-5df49532dfbd",
+    "Caja y cobros": "f260ae0f-4a6a-40c8-b8cd-5f2e2c0272e2",
+    "Carta y salón": "58a66a9b-570d-458e-aa2a-e4eac2f1ff17",
+    "Cuentas y acceso": "7eb901f9-6fe7-4796-b5f1-6d5b14117c9e",
+    "Gestión del TP": "8d1a0600-54d9-47c6-820f-0d0621046cf0",
+    "Gestión del negocio": "1e8f691c-07ab-4270-80aa-7d051fbd529a",
+    "Pedidos y cocina": "9f418af0-8fe4-49ca-a17b-441794ae545f",
+    "Plataforma SaaS": "96847ee6-c3df-4869-b4a9-092362ac77f3",
+    "Salida a producción": "0df0e8fe-0c93-4135-8d42-eaca68d37e98",
+    "Stock": "1399f70b-b305-49ef-b5b8-986f109af61e"
+  },
+  "nota": "Cargado el 2026-11-16 desde la sesión web de Plane (rol contributor: sin permiso para crear etiquetas)."
+}

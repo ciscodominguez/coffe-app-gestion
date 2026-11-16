@@ -7,9 +7,9 @@
 ## Proyecto
 - Nombre: COFFE_APP — sistema de gestión para cafés (pedidos, cocina, caja, stock y cobros con QR), multi-tenant, Spring Boot + Angular + MySQL
 - Grupo del TP: Francisco Domínguez, Octavio Penacchietti y Agustín Avalos
-- Tablero: Plane — https://app.plane.so/gestion-de-desarrollo-de-soft/ (proyecto COFFE_APP)
+- Tablero: Plane — https://app.plane.so/gestion-de-desarrollo-de-soft/ (proyecto «Gestion de desarrollo de soft», identificador GESTI)
 - Slug de Plane: gestion-de-desarrollo-de-soft
-- Proyecto en Plane: COFFE_APP
+- Proyecto en Plane: Gestion de desarrollo de soft
 - Repositorio: https://github.com/ciscodominguez/coffe-app
 - Duración del sprint: 1 semana (ciclos de Plane de lunes a domingo)
 - Fecha de inicio: 2026-10-26
@@ -28,15 +28,16 @@ se suma el 16/11 como **Product Owner / gestión**.
 ## Integrantes
 | Nombre | Rol | Usuario en tablero | Usuario git | Dedicación | Ingreso al proyecto | Clave | Grupo TP |
 |---|---|---|---|---|---|---|---|
-| Francisco Domínguez | Dev full stack, dueño del repo | ⚠️ mail de Plane | Fran, ciscodominguez | 25 % | 2026-10-26 | fran | integrante |
+| Francisco Domínguez | Dev full stack, dueño del repo | dominguezfran07@gmail.com | Fran, ciscodominguez | 25 % | 2026-10-26 | fran | integrante |
 | Octavio Penacchietti | Dev full stack | openacchietti@gmail.com | Octa, openacchietti-star | 25 % | 2026-10-26 | octa | integrante |
-| Agustín Avalos | Product Owner / gestión | ⚠️ mail de Plane | — | 25 % | 2026-11-16 | agus | integrante |
+| Agustín Avalos | Product Owner / gestión | agus1996cabj@gmail.com | — | 25 % | 2026-11-16 | agus | integrante |
 | Giovani Napoli | Dev full stack (Prog IV) | giorgionapoli458@gmail.com | Gio, GioCDJ | 25 % | 2026-10-26 | gio | colaborador |
 | Facundo Gregorio | Dev full stack (Prog IV) | gregoriofacundo4@gmail.com | Facu, Facundo Gregorio | 25 % | 2026-10-26 | facu | colaborador |
 | Nicolás Spina | Dev full stack (Prog IV) | spinanicolas11@gmail.com | Nicolas, Nicolas Spina, nicolas spina | 25 % | 2026-10-26 | nico | colaborador |
 
-- **Usuario en tablero**: el mail con el que cada uno entró a Plane. El script de carga lo usa para asignar
-  los tickets; si alguien no está en el workspace, sus tickets quedan con la etiqueta `autor:<clave>`.
+- **Usuario en tablero**: el mail con el que cada uno entró a Plane. Gio, Facu y Nico no tienen cuenta: sus
+  tickets quedan sin asignar y el responsable figura en la descripción («Responsable: …»).
+- ⚠️ Octavio está en el workspace pero no en el proyecto GESTI: hasta que se una, sus 11 tickets quedan sin asignar.
 - **Dedicación**: ⚠️ 25 % (≈ 10 h por semana) es una estimación para estudiantes; ajústenla.
 
 ## Costos
