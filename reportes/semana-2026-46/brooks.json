@@ -1,0 +1,243 @@
+{
+  "semana": "semana-2026-46",
+  "desde": "2026-11-09",
+  "hasta": "2026-11-15",
+  "fuente": "gestion/plane/tickets.json (tablero reconstruido desde git)",
+  "diagnostico": "🟡",
+  "señales": [
+    "86% del trabajo pendiente es secuencial o crítico de conocimiento."
+  ],
+  "atrasado": false,
+  "equipo_trabajo": [
+    "facu",
+    "fran",
+    "gio",
+    "nico",
+    "octa"
+  ],
+  "canales_trabajo": 10,
+  "grupo_tp": [
+    "fran",
+    "octa"
+  ],
+  "canales_tp": 1,
+  "devs_tp": [
+    "fran",
+    "octa"
+  ],
+  "velocidades_tp": {
+    "semana-2026-44": 36.0,
+    "semana-2026-45": 52.0,
+    "semana-2026-46": 0.0
+  },
+  "velocidad_tp": 29.3,
+  "velocidad_dev": 14.7,
+  "pendientes": [
+    {
+      "id": "P-1",
+      "titulo": "Un café piloto entra a la app desde internet con HTTPS",
+      "sp": 5,
+      "tipo": "Crítica de conocimiento",
+      "depende_de": [],
+      "quien_sabe": [
+        "fran"
+      ],
+      "asignado": "fran",
+      "estado": "pendiente",
+      "conocen": 1
+    },
+    {
+      "id": "P-2",
+      "titulo": "Las copias nocturnas se restauran bien (prueba real de restauración)",
+      "sp": 3,
+      "tipo": "Secuencial",
+      "depende_de": [
+        "P-1"
+      ],
+      "quien_sabe": [
+        "fran"
+      ],
+      "asignado": "octa",
+      "estado": "pendiente",
+      "conocen": 1
+    },
+    {
+      "id": "P-3",
+      "titulo": "Nos avisa al celular si la app se cae (monitor sobre /actuator/health)",
+      "sp": 1,
+      "tipo": "Secuencial",
+      "depende_de": [
+        "P-1"
+      ],
+      "quien_sabe": [
+        "fran"
+      ],
+      "asignado": "octa",
+      "estado": "pendiente",
+      "conocen": 1
+    },
+    {
+      "id": "P-4",
+      "titulo": "Términos y privacidad con los datos reales del responsable",
+      "sp": 2,
+      "tipo": "Paralelizable",
+      "depende_de": [],
+      "quien_sabe": [
+        "agus"
+      ],
+      "asignado": "agus",
+      "estado": "pendiente",
+      "conocen": 0
+    },
+    {
+      "id": "P-5",
+      "titulo": "1 o 2 cafés de Mar del Plata usan la app gratis un mes como piloto",
+      "sp": 3,
+      "tipo": "Secuencial",
+      "depende_de": [
+        "P-1",
+        "P-2",
+        "P-3"
+      ],
+      "quien_sabe": [
+        "fran"
+      ],
+      "asignado": "fran",
+      "estado": "pendiente",
+      "conocen": 0
+    }
+  ],
+  "pendiente_sp": 14,
+  "paralelizable_sp": 2,
+  "secuencial_sp": 12,
+  "deseable": [
+    {
+      "id": "P-6",
+      "titulo": "Los pedidos de PedidosYa/Rappi llegan solos a cocina (Fase B/C)",
+      "sp": 8
+    },
+    {
+      "id": "P-7",
+      "titulo": "El café que lo necesita factura electrónicamente con ARCA (opcional)",
+      "sp": 13
+    }
+  ],
+  "ruta_critica": [
+    "P-1",
+    "P-2",
+    "P-5"
+  ],
+  "ruta_critica_sp": 11,
+  "ruta_critica_semanas": 0.8,
+  "semanas_restantes": 4.1,
+  "semanas_necesarias": 0.5,
+  "proxima_entrega": "2026-11-16",
+  "fecha_entrega": "2026-12-14",
+  "bus_factor": {
+    "backend/": {
+      "bus": 2,
+      "gente": [
+        "nico",
+        "facu"
+      ]
+    },
+    "deploy/": {
+      "bus": 1,
+      "gente": [
+        "fran"
+      ]
+    },
+    "docs/pruebas/": {
+      "bus": 1,
+      "gente": [
+        "octa"
+      ]
+    },
+    "frontend/": {
+      "bus": 2,
+      "gente": [
+        "octa",
+        "facu"
+      ]
+    }
+  },
+  "entrantes": {
+    "fran": 3,
+    "octa": 2
+  },
+  "revisiones": {
+    "fran": 11,
+    "gio": 9,
+    "nico": 8,
+    "facu": 7,
+    "octa": 5
+  },
+  "revisiones_pct": {
+    "fran": 0.28,
+    "gio": 0.23,
+    "facu": 0.17,
+    "nico": 0.2,
+    "octa": 0.12
+  },
+  "nuevos": [],
+  "escenarios": [
+    {
+      "extra": 0,
+      "personas": 2,
+      "canales": 1,
+      "semanas": 0.5,
+      "capacidad": [
+        29.3
+      ],
+      "fin": "2026-11-20",
+      "vs_hoy": "—"
+    },
+    {
+      "extra": 1,
+      "personas": 3,
+      "canales": 3,
+      "semanas": 0.5,
+      "capacidad": [
+        25.8
+      ],
+      "fin": "2026-11-20",
+      "vs_hoy": "no cambia (+0.0 sem.)"
+    },
+    {
+      "extra": 2,
+      "personas": 4,
+      "canales": 6,
+      "semanas": 0.7,
+      "capacidad": [
+        19.6
+      ],
+      "fin": "2026-11-21",
+      "vs_hoy": "no cambia (+0.2 sem.)"
+    }
+  ],
+  "nombres": {
+    "fran": "Francisco",
+    "octa": "Octavio",
+    "agus": "Agustín",
+    "gio": "Giovani",
+    "facu": "Facundo",
+    "nico": "Nicolás"
+  },
+  "deps_todas": {
+    "P-1": [
+      "PR-35"
+    ],
+    "P-2": [
+      "P-1"
+    ],
+    "P-3": [
+      "P-1"
+    ],
+    "P-4": [],
+    "P-5": [
+      "P-1",
+      "P-2",
+      "P-3"
+    ]
+  }
+}

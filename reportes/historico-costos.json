@@ -1,0 +1,35 @@
+[
+  {
+    "semana": "semana-2026-44",
+    "cargado": 865.4,
+    "entregado": 6075.0,
+    "imputado": 7350.0,
+    "no_utilizado": 0.0,
+    "sp_terminados": 81.0,
+    "costo_por_sp": 10.68,
+    "infra_semana": 2.31,
+    "ahorro_semana": 96.06
+  },
+  {
+    "semana": "semana-2026-45",
+    "cargado": 865.4,
+    "entregado": 6675.0,
+    "imputado": 8250.0,
+    "no_utilizado": 0.0,
+    "sp_terminados": 89.0,
+    "costo_por_sp": 9.72,
+    "infra_semana": 2.31,
+    "ahorro_semana": 54.23
+  },
+  {
+    "semana": "semana-2026-46",
+    "cargado": 865.4,
+    "entregado": 1950.0,
+    "imputado": 1950.0,
+    "no_utilizado": 369.24,
+    "sp_terminados": 26.0,
+    "costo_por_sp": 33.28,
+    "infra_semana": 2.31,
+    "ahorro_semana": 379.62
+  }
+]

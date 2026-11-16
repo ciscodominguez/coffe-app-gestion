@@ -1,0 +1,29 @@
+[
+  {
+    "semana": "semana-2026-44",
+    "semaforo": "verde",
+    "sp_terminados": 81,
+    "velocidad_tp": 36.0,
+    "avance": 0.386,
+    "pendiente_sp": 129,
+    "alertas": 1
+  },
+  {
+    "semana": "semana-2026-45",
+    "semaforo": "verde",
+    "sp_terminados": 89,
+    "velocidad_tp": 44.0,
+    "avance": 0.81,
+    "pendiente_sp": 40,
+    "alertas": 0
+  },
+  {
+    "semana": "semana-2026-46",
+    "semaforo": "verde",
+    "sp_terminados": 26,
+    "velocidad_tp": 29.3,
+    "avance": 0.933,
+    "pendiente_sp": 14,
+    "alertas": 1
+  }
+]

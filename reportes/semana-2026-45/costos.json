@@ -1,0 +1,243 @@
+{
+  "semana": "semana-2026-45",
+  "desde": "2026-11-02",
+  "hasta": "2026-11-08",
+  "fuente": "gestion/plane/tickets.json (tablero reconstruido desde git)",
+  "costo_hora": 18.75,
+  "costo_semanal": 692.31,
+  "horas_por_sp": 4.0,
+  "cargado": 865.4,
+  "entregado": 6675.0,
+  "imputado": 8250.0,
+  "no_utilizado": 0.0,
+  "sp_terminados": 89.0,
+  "costo_por_sp": 9.72,
+  "infra_semana": 2.31,
+  "personas": [
+    {
+      "clave": "fran",
+      "nombre": "Francisco Domínguez",
+      "grupo": "integrante",
+      "dedicacion_pct": 25.0,
+      "capacidad_h": 10.0,
+      "cargado": 173.08,
+      "horas": 120.0,
+      "imputado": 2250.0,
+      "entregado": 2250.0,
+      "en_curso": 0.0,
+      "no_utilizado": 0.0,
+      "sp": 30.0,
+      "tareas": 7,
+      "wip": [],
+      "commits": 5,
+      "revisiones": 4
+    },
+    {
+      "clave": "octa",
+      "nombre": "Octavio Penacchietti",
+      "grupo": "integrante",
+      "dedicacion_pct": 25.0,
+      "capacidad_h": 10.0,
+      "cargado": 173.08,
+      "horas": 88.0,
+      "imputado": 1650.0,
+      "entregado": 1650.0,
+      "en_curso": 0.0,
+      "no_utilizado": 0.0,
+      "sp": 22.0,
+      "tareas": 6,
+      "wip": [],
+      "commits": 6,
+      "revisiones": 4
+    },
+    {
+      "clave": "gio",
+      "nombre": "Giovani Napoli",
+      "grupo": "colaborador",
+      "dedicacion_pct": 25.0,
+      "capacidad_h": 10.0,
+      "cargado": 173.08,
+      "horas": 92.0,
+      "imputado": 1725.0,
+      "entregado": 1575.0,
+      "en_curso": 150.0,
+      "no_utilizado": 0.0,
+      "sp": 21.0,
+      "tareas": 5,
+      "wip": [
+        "PR-34"
+      ],
+      "commits": 5,
+      "revisiones": 6
+    },
+    {
+      "clave": "facu",
+      "nombre": "Facundo Gregorio",
+      "grupo": "colaborador",
+      "dedicacion_pct": 25.0,
+      "capacidad_h": 10.0,
+      "cargado": 173.08,
+      "horas": 68.0,
+      "imputado": 1275.0,
+      "entregado": 675.0,
+      "en_curso": 600.0,
+      "no_utilizado": 0.0,
+      "sp": 9.0,
+      "tareas": 4,
+      "wip": [
+        "PR-33",
+        "PR-38"
+      ],
+      "commits": 5,
+      "revisiones": 5
+    },
+    {
+      "clave": "nico",
+      "nombre": "Nicolás Spina",
+      "grupo": "colaborador",
+      "dedicacion_pct": 25.0,
+      "capacidad_h": 10.0,
+      "cargado": 173.08,
+      "horas": 72.0,
+      "imputado": 1350.0,
+      "entregado": 525.0,
+      "en_curso": 825.0,
+      "no_utilizado": 0.0,
+      "sp": 7.0,
+      "tareas": 3,
+      "wip": [
+        "PR-39",
+        "PR-27"
+      ],
+      "commits": 4,
+      "revisiones": 6
+    }
+  ],
+  "tareas": [
+    {
+      "id": "PR-15",
+      "titulo": "El cliente paga con QR de Mercado Pago",
+      "asignado": "fran",
+      "sp": 8,
+      "estimado_h": 32.0,
+      "costo": 600.0,
+      "estado": "terminada"
+    },
+    {
+      "id": "PR-9",
+      "titulo": "El cajero cobra un pedido desde la pantalla de caja",
+      "asignado": "fran",
+      "sp": 8,
+      "estimado_h": 32.0,
+      "costo": 600.0,
+      "estado": "terminada"
+    },
+    {
+      "id": "PR-39",
+      "titulo": "El dueño dibuja el plano del salón y pide soporte con un botón",
+      "asignado": "nico",
+      "sp": 8,
+      "estimado_h": 32.0,
+      "costo": 600.0,
+      "estado": "en_revision"
+    },
+    {
+      "id": "PR-16",
+      "titulo": "La caja abre, cobra, registra movimientos y cierra con conteo",
+      "asignado": "octa",
+      "sp": 5,
+      "estimado_h": 20.0,
+      "costo": 375.0,
+      "estado": "terminada"
+    },
+    {
+      "id": "PR-20",
+      "titulo": "Un producto tiene variantes y agregados (tamaño, leche, extra shot)",
+      "asignado": "gio",
+      "sp": 5,
+      "estimado_h": 20.0,
+      "costo": 375.0,
+      "estado": "terminada"
+    },
+    {
+      "id": "PR-26",
+      "titulo": "La plataforma ve todos los cafés clientes y los activa o suspende (panel superadmin)",
+      "asignado": "gio",
+      "sp": 5,
+      "estimado_h": 20.0,
+      "costo": 375.0,
+      "estado": "terminada"
+    },
+    {
+      "id": "PR-24",
+      "titulo": "El mozo elige variantes y agregados al cargar el pedido",
+      "asignado": "octa",
+      "sp": 5,
+      "estimado_h": 20.0,
+      "costo": 375.0,
+      "estado": "terminada"
+    },
+    {
+      "id": "PR-29",
+      "titulo": "Cada café paga su suscripción mensual con débito automático",
+      "asignado": "gio",
+      "sp": 5,
+      "estimado_h": 20.0,
+      "costo": 375.0,
+      "estado": "terminada"
+    },
+    {
+      "id": "PR-35",
+      "titulo": "La app está lista para instalarse en un servidor (Docker, HTTPS, backups)",
+      "asignado": "fran",
+      "sp": 5,
+      "estimado_h": 20.0,
+      "costo": 375.0,
+      "estado": "terminada"
+    },
+    {
+      "id": "PR-36",
+      "titulo": "Probamos todo antes de salir: barrido de endpoints, carga y concurrencia",
+      "asignado": "octa",
+      "sp": 5,
+      "estimado_h": 20.0,
+      "costo": 375.0,
+      "estado": "terminada"
+    }
+  ],
+  "oportunidades": [
+    {
+      "patron": "Trabajo bloqueado",
+      "que_paso": "PRs listos que esperaron revisión: PR-9 2 días hábiles; PR-11 2 días hábiles; PR-14 2 días hábiles; PR-25 2 días hábiles; PR-27 2 días hábiles. Costo de la espera = días × costo diario del autor × 15 % (retomar contexto, rebase).",
+      "costo": 51.92,
+      "que_hacer": "Acordar que todo PR se revisa en menos de 24 h y nombrar el revisor al abrirlo.",
+      "ahorro_semana": 51.92
+    },
+    {
+      "patron": "Infraestructura",
+      "que_paso": "VPS 2 GB de RAM (producción, todavía sin alquilar): USD 10,00 por mes.",
+      "costo": 2.31,
+      "que_hacer": "Evaluar Oracle Cloud Always Free: Ampere A1 hasta 2 OCPU / 12 GB (desde jun-2026), con imágenes arm64.",
+      "ahorro_semana": 2.31
+    }
+  ],
+  "ahorro_semana": 54.23,
+  "calidad": {
+    "tareas_sin_horas": 30,
+    "sobrecarga": [
+      "Francisco Domínguez",
+      "Octavio Penacchietti",
+      "Giovani Napoli",
+      "Facundo Gregorio",
+      "Nicolás Spina"
+    ],
+    "reuniones": "No hay tareas de tipo reunión en el tablero: no se puede medir el tiempo de coordinación.",
+    "estimacion": "Sin horas registradas no se puede medir el desvío de estimación ni la subestimación crónica."
+  },
+  "supuestos": [
+    "Costo: USD 3.000 por mes por integrante → USD 18,75 la hora → USD 692,31 por semana (× 12 ÷ 52), multiplicado por la dedicación de equipo.md.",
+    "Capacidad semanal = 40 h × dedicación.",
+    "Ninguna tarea tiene horas registradas: las horas se estiman con la equivalencia de equipo.md (1 SP = 4 h). Imputado = horas de lo terminado en la semana + de lo que quedó abierto al cierre.",
+    "Fuente: gestion/plane/tickets.json (tablero reconstruido desde git)."
+  ]
+}
