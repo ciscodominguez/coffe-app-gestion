@@ -55,7 +55,7 @@ DIAGRAMAS = {"contexto": "c4-1-contexto.md", "contenedores": "c4-2-contenedores.
 
 
 def git(*args):
-    return subprocess.run(["git", *args], capture_output=True, text=True, cwd=RAIZ, check=True).stdout
+    return subprocess.run(["git", *args], capture_output=True, text=True, encoding="utf-8", errors="replace", cwd=RAIZ, check=True).stdout
 
 
 def leer(commit, ruta):

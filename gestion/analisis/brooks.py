@@ -59,8 +59,8 @@ def bus_factor(conteo):
 def autores_por_carpeta(eq, hasta):
     m = autor_a_clave(eq)
     out = defaultdict(lambda: defaultdict(int))
-    salida = subprocess.run(["git", "log", "main", "--no-merges", f"--until={hasta}T23:59:59-03:00",
-                             "--format=@@%an", "--numstat"], capture_output=True, text=True, cwd=RAIZ,
+    salida = subprocess.run(["git", "log", "HEAD", "--no-merges", f"--until={hasta}T23:59:59-03:00",
+                             "--format=@@%an", "--numstat"], capture_output=True, text=True, encoding="utf-8", errors="replace", cwd=RAIZ,
                             check=True).stdout
     autor = None
     for l in salida.splitlines():

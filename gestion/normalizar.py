@@ -162,7 +162,7 @@ def commits_de_semana(eq, desde, hasta):
     salida = subprocess.run(
         ["git", "log", "--all", "--no-merges", f"--since={desde}T00:00:00-03:00",
          f"--until={hasta}T23:59:59-03:00", "--format=@@%h|%an|%aI|%s", "--shortstat"],
-        capture_output=True, text=True, cwd=RAIZ, check=True).stdout
+        capture_output=True, text=True, encoding="utf-8", errors="replace", cwd=RAIZ, check=True).stdout
     vistos, out, actual = {}, [], None
     for linea in salida.splitlines():
         if linea.startswith("@@"):
