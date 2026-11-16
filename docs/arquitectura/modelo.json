@@ -1,6 +1,6 @@
 {
-  "commit": "3c4df30",
-  "fecha_commit": "2026-11-03T19:11:26-03:00",
+  "commit": "174032e",
+  "fecha_commit": "2026-11-06T18:23:57-03:00",
   "backend": {
     "paquetes": {
       "auth": {
@@ -19,6 +19,28 @@
           "/auth"
         ],
         "otros": []
+      },
+      "billing": {
+        "controllers": [
+          "BillingWebhookController",
+          "SubscriptionController"
+        ],
+        "services": [
+          "BillingService"
+        ],
+        "repositories": [
+          "PlatformSettingsRepository",
+          "SubscriptionPaymentRepository"
+        ],
+        "rutas": [
+          "/subscription",
+          "/webhooks"
+        ],
+        "otros": [
+          "BillingJob",
+          "BillingProperties",
+          "BillingState"
+        ]
       },
       "business": {
         "controllers": [
@@ -64,6 +86,21 @@
         ],
         "rutas": [
           "/categories"
+        ],
+        "otros": []
+      },
+      "channel": {
+        "controllers": [
+          "SalesChannelController"
+        ],
+        "services": [
+          "SalesChannelService"
+        ],
+        "repositories": [
+          "SalesChannelRepository"
+        ],
+        "rutas": [
+          "/sales-channels"
         ],
         "otros": []
       },
@@ -246,6 +283,19 @@
           "WebSocketConfig"
         ]
       },
+      "report": {
+        "controllers": [
+          "ReportController"
+        ],
+        "services": [
+          "ReportService"
+        ],
+        "repositories": [],
+        "rutas": [
+          "/reports"
+        ],
+        "otros": []
+      },
       "security": {
         "controllers": [],
         "services": [
@@ -324,6 +374,10 @@
     "dependencias": [
       [
         "auth",
+        "billing"
+      ],
+      [
+        "auth",
         "business"
       ],
       [
@@ -341,6 +395,18 @@
       [
         "auth",
         "user"
+      ],
+      [
+        "billing",
+        "business"
+      ],
+      [
+        "billing",
+        "mercadopago"
+      ],
+      [
+        "billing",
+        "security"
       ],
       [
         "business",
@@ -365,6 +431,10 @@
       [
         "cash",
         "user"
+      ],
+      [
+        "channel",
+        "location"
       ],
       [
         "dashboard",
@@ -409,6 +479,10 @@
       [
         "order",
         "cash"
+      ],
+      [
+        "order",
+        "channel"
       ],
       [
         "order",
@@ -459,6 +533,34 @@
         "security"
       ],
       [
+        "report",
+        "business"
+      ],
+      [
+        "report",
+        "cash"
+      ],
+      [
+        "report",
+        "location"
+      ],
+      [
+        "report",
+        "order"
+      ],
+      [
+        "report",
+        "security"
+      ],
+      [
+        "report",
+        "table"
+      ],
+      [
+        "report",
+        "user"
+      ],
+      [
         "security",
         "business"
       ],
@@ -499,7 +601,7 @@
       "mercadopago_api",
       "smtp"
     ],
-    "entidades": 27
+    "entidades": 30
   },
   "frontend": {
     "servicios": {
@@ -545,10 +647,24 @@
           "/dashboard"
         ]
       },
+      "DiscountService": {
+        "archivo": "core/services/discount.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/discounts"
+        ]
+      },
       "LayoutService": {
         "archivo": "core/services/layout.service.ts",
         "tipo": "ui",
         "rutas": []
+      },
+      "LegalService": {
+        "archivo": "core/services/legal.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/legal"
+        ]
       },
       "LocationResolverService": {
         "archivo": "core/services/location-resolver.service.ts",
@@ -576,6 +692,14 @@
         "tipo": "offline",
         "rutas": []
       },
+      "OptionGroupService": {
+        "archivo": "core/services/option-group.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/option-groups",
+          "/products"
+        ]
+      },
       "OrderService": {
         "archivo": "core/services/order.service.ts",
         "tipo": "http",
@@ -587,6 +711,13 @@
         "archivo": "core/services/orders-realtime.service.ts",
         "tipo": "realtime",
         "rutas": []
+      },
+      "PlatformService": {
+        "archivo": "features/superadmin/platform.service.ts",
+        "tipo": "http",
+        "rutas": [
+          "/platform"
+        ]
       },
       "PrintContextService": {
         "archivo": "core/services/print-context.service.ts",
@@ -658,7 +789,9 @@
       "catalog": [
         "AuthService",
         "CategoryService",
+        "DiscountService",
         "MediaService",
+        "OptionGroupService",
         "StockService",
         "ToastService"
       ],
@@ -681,6 +814,9 @@
         "TableService",
         "TicketPrintService",
         "ToastService"
+      ],
+      "legal": [
+        "ApiService"
       ],
       "locations": [
         "AuthService",
@@ -713,6 +849,13 @@
         "StockService",
         "ToastService"
       ],
+      "superadmin": [
+        "ApiService",
+        "AuthService",
+        "PlatformService",
+        "ThemeService",
+        "ToastService"
+      ],
       "tables": [
         "AuthService",
         "LocationResolverService",
@@ -729,6 +872,7 @@
         "CategoryService",
         "LocationResolverService",
         "OfflineOrderQueueService",
+        "OptionGroupService",
         "OrderService",
         "OrdersRealtimeService",
         "PrintContextService",
