@@ -15,3 +15,8 @@ deploy/logs/
 Claude outputs/
 .idea/
 *.iml
+
+# Gestión
+__pycache__/
+*.pyc
+.env.plane
