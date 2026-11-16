@@ -37,7 +37,6 @@ se suma el 16/11 como **Product Owner / gestión**.
 
 - **Usuario en tablero**: el mail con el que cada uno entró a Plane. Gio, Facu y Nico no tienen cuenta: sus
   tickets quedan sin asignar y el responsable figura en la descripción («Responsable: …»).
-- ⚠️ Octavio está en el workspace pero no en el proyecto GESTI: hasta que se una, sus 11 tickets quedan sin asignar.
 - **Dedicación**: ⚠️ 25 % (≈ 10 h por semana) es una estimación para estudiantes; ajústenla.
 
 ## Costos
