@@ -284,14 +284,27 @@ def main():
         print(f"  issue {proy.get('identifier', '')}-{r.get('sequence_id')}: [{t['clave']}] {t['titulo'][:60]}")
 
     # --- Issues a ciclos y módulos ---
+    def ya_en(ruta):
+        return {i.get("id") or i.get("issue") for i in api.lista(ruta)}
+
     for c in ciclos:
+        ruta = f"{P}/cycles/{ciclo_id[c]}/cycle-issues/"
         lote = [ids[t["clave"]]["id"] for t in datos if t["ciclo"] == c]
-        r = api.req("POST", f"{P}/cycles/{ciclo_id[c]}/cycle-issues/", json={"issues": lote})
+        lote = [i for i in lote if i not in ya_en(ruta)]
+        if not lote:
+            continue
+        r = api.req("POST", ruta, json={"issues": lote})
         if isinstance(r, requests.Response):
-            print(f"⚠️  No pude agregar los issues a {nombre_ciclo(c)}: {r.status_code} {r.text[:200]}")
+            print(f"⚠️  No pude agregar {len(lote)} issues a {nombre_ciclo(c)}: {r.status_code} {r.text[:200]}\n"
+                  "   (Plane no deja sumar issues a un ciclo terminado: cambiá a mano la fecha de fin a una futura, "
+                  "corré el script de nuevo y volvé a poner la fecha real.)")
     for h in historias:
+        ruta = f"{P}/modules/{mods[h]}/module-issues/"
         lote = [ids[t["clave"]]["id"] for t in datos if t["historia"] == h]
-        r = api.req("POST", f"{P}/modules/{mods[h]}/module-issues/", json={"issues": lote})
+        lote = [i for i in lote if i not in ya_en(ruta)]
+        if not lote:
+            continue
+        r = api.req("POST", ruta, json={"issues": lote})
         if isinstance(r, requests.Response):
             print(f"⚠️  No pude agregar los issues al módulo {h}: {r.status_code} {r.text[:200]}")
 
