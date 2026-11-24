@@ -57,6 +57,8 @@ se suma el 16/11 como **Product Owner / gestión**.
 
 ## Objetivos / historias comprometidas
 Puntos = suma de story points de los tickets en Plane. Lo que dice "Deseable" está fuera del alcance comprometido.
+Las filas "Tesis: …" son el plan de la próxima etapa (auditoría del 19/11): 40 commits C01–C40 en 5 olas,
+cargados en Plane como planificados (Todo) en las semanas 48, 49 y 50. 1 punto de la auditoría = medio día = 1 SP.
 
 | Id | Historia | Puntos | Entrega |
 |---|---|---|---|
@@ -83,3 +85,12 @@ Puntos = suma de story points de los tickets en Plane. Lo que dice "Deseable" es
 | P-5 | 1 o 2 cafés de Mar del Plata usan la app gratis un mes como piloto | 3 | 2026-12-14 |
 | P-6 | Los pedidos de PedidosYa/Rappi llegan solos a cocina (Fase B/C) | 8 | Deseable |
 | P-7 | El café que lo necesita factura electrónicamente con ARCA (opcional) | 13 | Deseable |
+| Tesis: Calidad y CI | C01, C28 | 4 | 2026-11-30 |
+| Tesis: Errores de la auditoría | C02, C03, C04, C05, C06, C07, C08, C09, C10, C13, C16 | 15 | 2026-11-30 |
+| Tesis: Mejoras de la auditoría | C14, C19 | 2 | 2026-11-30 |
+| Tesis: Mejoras de la auditoría | C11, C12, C17, C20, C24, C25, C27, C15, C18, C21, C22, C23, C26 | 29 | 2026-12-14 |
+| Tesis: Bitácora de auditoría | C29, C30, C31 | 7 | 2026-12-14 |
+| Tesis: Carta QR y llamar al mozo | C32, C33 | 6 | 2026-12-14 |
+| Tesis: Fidelización por DNI | C34, C35 | 6 | 2026-12-14 |
+| Tesis: Pronóstico de reposición | C36, C37 | 5 | 2026-12-14 |
+| Tesis: Defensa de la tesis | C38, C39, C40 | 6 | 2026-12-14 |

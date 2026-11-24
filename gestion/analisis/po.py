@@ -434,8 +434,9 @@ def escribir_md(r, costos, brooks):
           f"| Espera de revisión promedio | {r['espera_revision'] if r['espera_revision'] is not None else '—'} días hábiles |",
           f"| Alcance nuevo en la semana | {r['scope_creep']:.0f} SP |",
           f"| Tareas bloqueadas | {r['bloqueadas']} |", "",
-          "## Proyección por entrega", "", "| Entrega | SP pendientes | Semanas que quedan | Semanas necesarias | Estado |",
-          "|---|---|---|---|---|"]
+          "## Proyección por entrega", "",
+          "| Entrega | SP pendientes | Semanas que quedan | Semanas necesarias | Necesarias solo con el grupo del TP | Estado |",
+          "|---|---|---|---|---|---|"]
     for p in r["proyecciones"]:
         L.append(f"| {'Final' if p['final'] else 'Parcial'} {p['entrega']} | {p['pendiente']:.0f} | {p['semanas_restantes']} | "
                  f"{p['semanas_necesarias'] if p['semanas_necesarias'] is not None else '∞'} | "

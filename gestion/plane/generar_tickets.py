@@ -134,6 +134,59 @@ EXTRAS = [
          inicio=None, fin=None, ciclo=None, deps=["P-1"]),
 ]
 
+# Plan de la próxima etapa: los 40 commits de la auditoría de la tesis (docs/auditoria), en 5 olas.
+# Se cargan como trabajo PLANIFICADO (Todo), no hecho. Puntos de la auditoría: 1 = medio día = 1 SP.
+# (clave, ola, título orientado a valor, tipo, área, historia, responsable, SP, depende de, commit planeado)
+AUDITORIA = [
+    ("C01", 1, "Ningún PR rompe main: CI con tests del back (MySQL 8) y del front", "tarea", "Calidad", "Calidad y CI", "fran", 2, [], "chore(ci): GitHub Actions con mvn verify (MySQL 8) y build + tests del front"),
+    ("C02", 1, "La app se llama COFFE_APP en todos lados y sin comentarios viejos", "tarea", "Frontend", "Errores de la auditoría", "fran", 1, ["C01"], "chore: título COFFE_APP y comentarios viejos de descuentos"),
+    ("C03", 1, "Nadie puede firmar tokens: JWT_SECRET obligatorio", "bug", "Backend", "Errores de la auditoría", "fran", 1, ["C01"], "fix(backend): JWT_SECRET obligatorio, sin valor por defecto"),
+    ("C04", 1, "El Excel de cierres de caja sale con las columnas alineadas", "bug", "Backend", "Errores de la auditoría", "gio", 2, ["C01"], "fix(backend): columnas del Excel \"Cierres de caja\" + test de encabezados"),
+    ("C05", 1, "No se puede dar de baja una mesa con un pedido abierto", "bug", "Backend", "Errores de la auditoría", "facu", 2, ["C01"], "fix(backend): no dar de baja una mesa con pedido abierto; sacar status del PATCH"),
+    ("C06", 1, "El botón \"Dar de baja\" se deshabilita en mesas ocupadas", "bug", "Frontend", "Errores de la auditoría", "facu", 1, ["C05"], "feat(frontend): deshabilitar \"Dar de baja\" en mesas ocupadas"),
+    ("C07", 1, "No se cargan pedidos en mesas inactivas o de otro local", "bug", "Backend", "Errores de la auditoría", "facu", 1, ["C01"], "fix(backend): rechazar pedidos en mesas inactivas o de otro local"),
+    ("C08", 1, "Cambiar el rol cierra la sesión y el café nunca queda sin dueño", "bug", "Backend", "Errores de la auditoría", "fran", 2, ["C01"], "fix(backend): cerrar sesión al cambiar rol o local; no cambiarse el rol propio ni dejar el café sin OWNER"),
+    ("C09", 1, "Un usuario solo puede quedar en un local válido de su café", "bug", "Backend", "Errores de la auditoría", "fran", 1, ["C08"], "fix(backend): validar el local al crear o editar usuarios"),
+    ("C10", 1, "Los productos de categorías dadas de baja no se ven ni se venden", "bug", "Backend", "Errores de la auditoría", "nico", 1, ["C01"], "fix: no mostrar ni vender productos de categorías dadas de baja (back + front)"),
+    ("C13", 1, "Cantidades, precios y nombres absurdos se rechazan con un mensaje claro", "bug", "Backend", "Errores de la auditoría", "nico", 2, ["C01"], "fix(backend): topes de cantidad y precio, nombres en blanco, orden y capacidad"),
+    ("C14", 1, "El sistema avisa antes de desactivar un insumo que usan recetas", "historia", "Backend", "Mejoras de la auditoría", "octa", 1, ["C01"], "feat(stock): avisar al desactivar un insumo que está en recetas"),
+    ("C16", 1, "Dos cierres de caja simultáneos no se pisan", "bug", "Backend", "Errores de la auditoría", "gio", 1, ["C01"], "fix(backend): lock pesimista al cerrar la caja"),
+    ("C19", 1, "El encargado encuentra un insumo escribiendo su nombre", "historia", "Frontend", "Mejoras de la auditoría", "octa", 1, ["C01"], "feat(frontend): buscador de insumos"),
+    ("C28", 1, "El carrito, la cola offline y los permisos del front tienen tests", "tarea", "Calidad", "Calidad y CI", "octa", 2, ["C01"], "test(frontend): carrito de Meseras, cola offline, roleGuard e interceptor 401"),
+    ("C11", 2, "Cada empleado queda identificado por su DNI", "historia", "Backend", "Mejoras de la auditoría", "fran", 2, ["C09"], "feat: DNI del personal (V20), con validación y alta en Equipo"),
+    ("C12", 2, "No hay categorías, productos, descuentos ni SKU repetidos", "bug", "Backend", "Mejoras de la auditoría", "nico", 3, ["C13"], "fix(backend): nombres y SKU únicos en categorías, productos y descuentos (V21)"),
+    ("C17", 2, "Los listados largos cargan por páginas y se pueden buscar", "historia", "Backend", "Mejoras de la auditoría", "nico", 3, ["C12"], "feat(backend): paginación en productos, categorías, insumos, usuarios y pedidos, con ?q="),
+    ("C20", 2, "La API entrega las ventas por día y por hora", "historia", "Backend", "Mejoras de la auditoría", "gio", 2, ["C04"], "feat(backend): endpoint de ventas por día y por hora"),
+    ("C24", 2, "El dueño encuentra todo en un menú más corto y una sola Configuración", "tarea", "Frontend", "Mejoras de la auditoría", "facu", 2, ["C06"], "refactor(frontend): menú simplificado y pantalla única de Configuración"),
+    ("C25", 2, "Cobro y carga de pedidos partidos en componentes más simples", "tarea", "Frontend", "Mejoras de la auditoría", "facu", 3, ["C28"], "refactor(frontend): partir payment-dialog y waiter-order en subcomponentes"),
+    ("C27", 2, "Cobros y descuentos separados del servicio de pedidos", "tarea", "Backend", "Mejoras de la auditoría", "octa", 2, ["C07", "C10"], "refactor(backend): separar OrderPaymentService y OrderDiscountService"),
+    ("C15", 3, "El sistema advierte si se cierra la caja con pedidos sin cobrar", "historia", "Backend", "Mejoras de la auditoría", "facu", 1, ["C16"], "feat(cash): advertir al cerrar la caja con pedidos sin cobrar"),
+    ("C18", 3, "Todos los listados tienen el mismo paginador", "historia", "Frontend", "Mejoras de la auditoría", "nico", 2, ["C17", "C19"], "feat(frontend): componente app-paginator en los listados"),
+    ("C21", 3, "El dueño ve gráficos de ventas por día, horas pico y métodos de pago", "historia", "Frontend", "Mejoras de la auditoría", "gio", 2, ["C20"], "feat(frontend): gráficos de ventas por día, horas pico y métodos de pago"),
+    ("C22", 3, "El café arma promos 2x1, combos y happy hour que se aplican solas", "historia", "Backend", "Mejoras de la auditoría", "nico", 3, ["C12", "C27"], "feat(backend): promos automáticas 2x1, combos y happy hour con vigencia (V22)"),
+    ("C23", 3, "El dueño carga promos y el carrito las aplica automáticamente", "historia", "Frontend", "Mejoras de la auditoría", "nico", 2, ["C22", "C25"], "feat(frontend): pantalla de promos y aplicación automática en el carrito"),
+    ("C26", 3, "El encargado se entera al instante cuando un insumo queda bajo", "historia", "Frontend", "Mejoras de la auditoría", "octa", 2, ["C14", "C24"], "feat: alertas de stock con badge en el menú y aviso en vivo"),
+    ("C29", 4, "Queda registrado quién hizo cada acción sensible (bitácora con AOP)", "historia", "Backend", "Bitácora de auditoría", "fran", 3, ["C27"], "feat(backend): bitácora de auditoría con @Audited y AOP (V23)"),
+    ("C30", 4, "Anulaciones, descuentos, precios, caja, stock y roles quedan auditados", "historia", "Backend", "Bitácora de auditoría", "fran", 2, ["C29", "C22"], "feat(backend): auditar anulaciones, descuentos, precios, caja, stock y roles"),
+    ("C31", 4, "El dueño consulta la actividad con filtros por usuario, acción y fecha", "historia", "Frontend", "Bitácora de auditoría", "fran", 2, ["C29", "C24"], "feat(frontend): pantalla Actividad con filtros"),
+    ("C32", 4, "El cliente ve la carta y llama al mozo desde el QR de la mesa (API)", "historia", "Backend", "Carta QR y llamar al mozo", "facu", 3, ["C05", "C10"], "feat(backend): carta pública y llamado al mozo por token de mesa (V24)"),
+    ("C33", 4, "Cada mesa tiene su QR impreso y el mozo recibe el llamado en vivo", "historia", "Frontend", "Carta QR y llamar al mozo", "facu", 3, ["C32", "C25"], "feat(frontend): carta /carta/:token, imprimir QR y aviso en Meseras"),
+    ("C34", 4, "El café premia a sus clientes frecuentes con sellos por DNI (API)", "historia", "Backend", "Fidelización por DNI", "octa", 3, ["C27"], "feat(backend): clientes y programa de sellos, con el premio como descuento (V25)"),
+    ("C35", 4, "El cajero suma sellos con el DNI al cobrar y ve la ficha del cliente", "historia", "Frontend", "Fidelización por DNI", "octa", 3, ["C34", "C25"], "feat(frontend): DNI en el cobro, ficha de cliente y configuración del programa"),
+    ("C36", 4, "El sistema calcula cuánto comprar de cada insumo antes de que se termine", "historia", "Backend", "Pronóstico de reposición", "gio", 3, ["C14"], "feat(backend): pronóstico de reposición por día de la semana"),
+    ("C37", 4, "El encargado descarga la lista de compras en Excel", "historia", "Frontend", "Pronóstico de reposición", "gio", 2, ["C36", "C04"], "feat(frontend): lista de compras con exportación a Excel"),
+    ("C38", 5, "El jurado entiende el proyecto con un README corto y un diagrama", "tarea", "Docs", "Defensa de la tesis", "gio", 2, ["C29", "C30", "C31", "C32", "C33", "C34", "C35", "C36", "C37"], "docs: README corto, diagrama de arquitectura e historial aparte"),
+    ("C39", 5, "La demo arranca con carta con fotos y dos semanas de ventas", "tarea", "Calidad", "Defensa de la tesis", "gio", 2, ["C29", "C30", "C31", "C32", "C33", "C34", "C35", "C36", "C37"], "chore: datos de demo (carta con fotos y 2 semanas de ventas)"),
+    ("C40", 5, "El recorrido completo de la defensa está probado de punta a punta", "tarea", "Calidad", "Defensa de la tesis", "octa", 2, ["C38", "C39"], "test: prueba integral de punta a punta y checklist de la defensa"),
+]
+# Ola -> ciclo y entrega. Ola 1 cierra para la entrega parcial del 30/11; el resto, para la final del 14/12.
+CICLO_DE_OLA = {1: ("semana-2026-48", "2026-11-23", "2026-11-29", "2026-11-30"),
+                2: ("semana-2026-49", "2026-11-30", "2026-12-06", "2026-12-14"),
+                3: ("semana-2026-49", "2026-11-30", "2026-12-06", "2026-12-14"),
+                4: ("semana-2026-50", "2026-12-07", "2026-12-13", "2026-12-14"),
+                5: ("semana-2026-50", "2026-12-07", "2026-12-13", "2026-12-14")}
+PLAN_CREADO = "2026-11-23"
+
 
 def git(*args):
     return subprocess.run(["git", *args], capture_output=True, text=True, encoding="utf-8", errors="replace", check=True).stdout
@@ -227,6 +280,12 @@ def main():
                  tipo=TIPO_DE.get(e["clave"], "tarea"), entrega=ENTREGA_DE.get(e["clave"], ENTREGA_2))
         t["deps"] = [por_commit.get(d, d) for d in t.pop("deps")]
         tickets.append(t)
+    for c, ola, titulo, tipo, area, historia, resp, sp, deps, commit_plan in AUDITORIA:
+        ciclo, ini, fin, entrega = CICLO_DE_OLA[ola]
+        tickets.append(dict(
+            clave=c, titulo=titulo, modulo=area, historia=historia, sp=sp, responsable=resp, estado="Todo",
+            inicio=ini, fin=fin, ciclo=ciclo, deps=deps, revisor=None, commit=None, rama=None, pr=None, lineas=None,
+            origen="plan", creado=PLAN_CREADO, tipo=tipo, entrega=entrega, ola=ola, commit_planeado=commit_plan))
     json.dump(dict(generado=date.today().isoformat(), tickets=tickets), sys.stdout, ensure_ascii=False, indent=2)
     print()
 

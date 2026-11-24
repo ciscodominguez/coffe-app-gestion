@@ -135,12 +135,24 @@ def analizar(semana):
                         | {c["autor"] for c in datos["commits"]}
                         | {t["revisor"] for t in tareas if t["cerrada_en_semana"] and t.get("revisor")})
 
-    # Velocidad del grupo del TP (promedio últimas 3 semanas) y por desarrollador.
-    vels = velocidades([dict(t, estado="Done" if t["estado"] == "terminada" else t["estado"],
-                             responsable=t["asignado"], fin=t["terminada"], sp=t["story_points"]) for t in tareas],
-                       semana, claves_tp, 3, d(prm["fecha_inicio"]))
-    vel_tp = sum(vels.values()) / len(vels)
-    vel_dev = vel_tp / len(devs_tp) if devs_tp else 0
+    # Equipo de la próxima etapa: el grupo del TP más los colaboradores que tienen trabajo pendiente asignado.
+    con_pendiente = {t["asignado"] for t in tareas if t["estado"] not in CERRADAS and t.get("entrega") != "deseable"
+                     and t.get("asignado")}
+    equipo = [p for p in gente if p["rol_tp"] == "integrante" or p["clave"] in con_pendiente]
+    devs = [p for p in equipo if p["rol"].lower().startswith("dev")]
+    claves_devs = {p["clave"] for p in devs}
+
+    # Velocidad: promedio de las últimas 3 semanas. Por desarrollador = SP cerrados ÷ (devs que cerraron algo esa semana).
+    hechas = [dict(t, estado="Done" if t["estado"] == "terminada" else t["estado"], responsable=t["asignado"],
+                   fin=t["terminada"], sp=t["story_points"]) for t in tareas]
+    vels = velocidades(hechas, semana, claves_devs, 3, d(prm["fecha_inicio"]))
+    dev_semanas = 0
+    for s_ in vels:
+        lun, dom = limites_semana(s_)
+        dev_semanas += len({t["asignado"] for t in tareas if t["estado"] == "terminada" and t["asignado"] in claves_devs
+                            and lun <= d(t["terminada"]) <= dom})
+    vel_dev = sum(vels.values()) / dev_semanas if dev_semanas else 0
+    vel_tp = vel_dev * len(devs)
 
     # Trabajo pendiente comprometido (sin lo "deseable").
     pend = [t for t in tareas if t["estado"] not in CERRADAS and t.get("entrega") != "deseable"]
@@ -190,7 +202,8 @@ def analizar(semana):
     total_rev = sum(revisiones.values()) or 1
 
     # Señales de condición de Brooks.
-    nuevos = [p for p in gente if (hasta - p["alta"]).days < 28 and p["alta"] > d(prm["fecha_inicio"])]
+    ingresos = [p for p in gente if (hasta - p["alta"]).days < 28 and p["alta"] > d(prm["fecha_inicio"])]
+    nuevos = [p for p in ingresos if p["rol"].lower().startswith("dev")]  # Brooks habla de sumar gente al desarrollo
     señales = []
     if atrasado and nuevos:
         señales.append("El proyecto está atrasado y se sumó gente.")
@@ -203,10 +216,10 @@ def analizar(semana):
     diag = "🔴" if (atrasado and nuevos) or len(señales) >= 2 else "🟡" if señales or atrasado else "🟢"
 
     escenarios = []
-    n_eq = len(tp)
+    n_eq = len(equipo)
     lunes_sig = limites_semana(semana)[1] + timedelta(days=1)
     for extra in (0, 1, 2):
-        sem, caps = simular(pend_sp, par_sp, vel_dev, len(devs_tp), n_eq, extra)
+        sem, caps = simular(pend_sp, par_sp, vel_dev, len(devs), n_eq, extra)
         fin = (lunes_sig + timedelta(days=round(sem * 7)) if sem is not None else None)
         escenarios.append(dict(extra=extra, personas=n_eq + extra, canales=canales(n_eq + extra), semanas=sem,
                                capacidad=caps[:4], fin=fin.isoformat() if fin else None))
@@ -222,7 +235,8 @@ def analizar(semana):
     return dict(
         semana=semana, desde=datos["desde"], hasta=datos["hasta"], fuente=datos["fuente"], diagnostico=diag,
         señales=señales, atrasado=atrasado, equipo_trabajo=trabajaron, canales_trabajo=canales(len(trabajaron)),
-        grupo_tp=sorted(claves_tp), canales_tp=canales(len(tp)), devs_tp=[p["clave"] for p in devs_tp],
+        grupo_tp=sorted(claves_tp), canales_tp=canales(len(tp)), devs_tp=[p["clave"] for p in devs],
+        equipo=[p["clave"] for p in equipo], canales_equipo=canales(len(equipo)),
         velocidades_tp=vels, velocidad_tp=round(vel_tp, 1), velocidad_dev=round(vel_dev, 1),
         pendientes=clasif, pendiente_sp=pend_sp, paralelizable_sp=par_sp, secuencial_sp=seq_sp,
         deseable=[dict(id=t["id"], titulo=t["titulo"], sp=t["story_points"]) for t in deseable],
@@ -233,7 +247,7 @@ def analizar(semana):
         bus_factor={c: dict(bus=b, gente=g) for c, (b, g) in bus_carpeta.items()},
         entrantes=dict(entrantes), revisiones={k: v for k, v in sorted(revisiones.items(), key=lambda x: -x[1])},
         revisiones_pct={k: round(v / total_rev, 2) for k, v in revisiones.items()},
-        nuevos=[p["clave"] for p in nuevos], escenarios=escenarios, nombres=nombre,
+        nuevos=[p["clave"] for p in ingresos], escenarios=escenarios, nombres=nombre,
         deps_todas={t["id"]: [x for x in t.get("dependencias", [])] for t in pend},
     )
 
@@ -271,6 +285,8 @@ def escribir_md(r):
          "## Equipo y comunicación",
          f"- Integrantes del grupo del TP: {len(r['grupo_tp'])} ({', '.join(nom(c) for c in r['grupo_tp'])}) — "
          f"canales: {r['canales_tp']} — overhead estimado: no medible (no hay tareas de reunión en el tablero)",
+         f"- Equipo con trabajo pendiente: {len(r['equipo'])} ({', '.join(nom(c) for c in r['equipo'])}) — canales: "
+         f"{r['canales_equipo']}",
          f"- Personas que trabajaron en el repo/tablero esta semana: {len(r['equipo_trabajo'])} "
          f"({', '.join(nom(c) for c in r['equipo_trabajo']) or 'nadie'}) — canales: {r['canales_trabajo']}",
          "- Fórmula: canales = n × (n − 1) ÷ 2. Con +1 persona en el grupo del TP: "
@@ -308,8 +324,8 @@ def escribir_md(r):
     for k, v in r["entrantes"].items():
         L.append(f"- {nom(k)} tiene {v} tarea(s) pendiente(s) que esperan algo suyo.")
     L += ["", "## Simulación: ¿sumar gente?",
-          f"Base: grupo del TP con {len(r['devs_tp'])} desarrolladores a {r['velocidad_dev']} SP/semana cada uno "
-          f"(velocidad del grupo {r['velocidad_tp']} SP/semana, promedio de las semanas "
+          f"Base: {len(r['devs_tp'])} desarrolladores con trabajo pendiente ({', '.join(nom(c) for c in r['devs_tp'])}) "
+          f"a {r['velocidad_dev']} SP/semana cada uno (velocidad del equipo {r['velocidad_tp']} SP/semana, promedio de las semanas "
           f"{', '.join(k[-2:] for k in r['velocidades_tp'])}). Quedan {r['semanas_restantes']} semanas hasta la entrega "
           f"final ({r['fecha_entrega']}).", "",
           "| Escenario | Personas | Canales | Capacidad efectiva sem 1–4 (SP) | Fin estimado | vs. hoy |", "|---|---|---|---|---|---|"]
@@ -340,7 +356,9 @@ def escribir_md(r):
           "- Mentoría: 20 % del tiempo de un integrante durante las primeras 2 semanas.",
           "- Overhead: 5 % menos de productividad del equipo por cada canal nuevo.",
           "- La persona nueva solo toma trabajo paralelizable.",
-          "- Velocidad = SP cerrados por el grupo del TP; Agustín (PO) cuenta para la comunicación pero no suma SP de código.",
+          "- Velocidad por desarrollador = SP cerrados ÷ desarrolladores que cerraron algo, promedio de 3 semanas. El "
+          "equipo de la simulación es el grupo del TP más los colaboradores con tareas pendientes; Agustín (PO) cuenta "
+          "para la comunicación pero no suma SP de código.",
           "- «Quién sabe» y bus factor salen de las líneas agregadas por autor en cada carpeta (git log de main).",
           f"- Fuente: {r['fuente']}.", ""]
     return "\n".join(L)

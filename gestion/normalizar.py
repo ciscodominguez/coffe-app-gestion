@@ -201,13 +201,18 @@ def main():
         if t.get("creada") and d(t["creada"]) > corte:
             continue  # todavía no existía en el tablero
         estado = estado_al(t, corte)
-        movs = [d(t.get("iniciada")), d(t.get("listo_revision")),
-                d(t.get("terminada")) if estado == "terminada" else None, d(t.get("actualizada"))]
+        # Solo cuentan cambios de estado reales: la fecha de inicio de un ticket que sigue "pendiente" es un plan,
+        # no un movimiento.
+        arranco = estado != "pendiente"
+        movs = [d(t.get("iniciada")) if arranco else None, d(t.get("listo_revision")),
+                d(t.get("terminada")) if estado == "terminada" else None,
+                d(t.get("actualizada")) if arranco else None]
         movs = [m for m in movs if m and m <= corte]
         tareas.append(dict(
             id=t["id"], titulo=t["titulo"], tipo=t["tipo"], estado=estado, asignado=t["asignado"],
             story_points=t["story_points"], estimacion_h=None, horas_registradas=None,
-            creada=t.get("creada"), iniciada=t["iniciada"] if d(t.get("iniciada")) and d(t["iniciada"]) <= corte else None,
+            creada=t.get("creada"),
+            iniciada=t["iniciada"] if estado != "pendiente" and d(t.get("iniciada")) and d(t["iniciada"]) <= corte else None,
             terminada=t["terminada"] if estado == "terminada" else None,
             ultimo_movimiento=max(movs).isoformat() if movs else None,
             reaperturas=0, dependencias=t["dependencias"], etiquetas=t["etiquetas"],
