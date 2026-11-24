@@ -40,7 +40,7 @@
 - Costo: USD 3.000 por mes por integrante → USD 18,75 la hora → USD 692,31 por semana (× 12 ÷ 52), multiplicado por la dedicación de equipo.md.
 - Capacidad semanal = 40 h × dedicación.
 - Ninguna tarea tiene horas registradas: las horas se estiman con la equivalencia de equipo.md (1 SP = 4 h). Imputado = horas de lo terminado en la semana + de lo que quedó abierto al cierre.
-- Fuente: gestion/plane/tickets.json (tablero reconstruido desde git).
+- Fuente: Plane (API).
 - No hay tareas de tipo reunión en el tablero: no se puede medir el tiempo de coordinación.
 - Sin horas registradas no se puede medir el desvío de estimación ni la subestimación crónica.
 - El costo imputado supera al cargado en: Francisco Domínguez, Octavio Penacchietti, Agustín Avalos. Con 1 SP = 4 h lo entregado no entra en la dedicación declarada: o trabajaron más horas de las declaradas, o la equivalencia de SP es alta para este equipo. Conviene registrar horas reales.

@@ -2,7 +2,7 @@
   "semana": "semana-2026-47",
   "desde": "2026-11-16",
   "hasta": "2026-11-22",
-  "fuente": "gestion/plane/tickets.json (tablero reconstruido desde git)",
+  "fuente": "Plane (API)",
   "diagnostico": "🟡",
   "señales": [
     "68% del trabajo pendiente es secuencial o crítico de conocimiento."
@@ -38,26 +38,28 @@
   "velocidad_dev": 18.3,
   "pendientes": [
     {
-      "id": "G-4",
-      "titulo": "equipo.md completo: integrantes, dedicación, objetivos, fechas y costos de infra",
-      "sp": 1,
-      "tipo": "Paralelizable",
-      "depende_de": [],
-      "quien_sabe": [
-        "agus"
-      ],
-      "asignado": "agus",
-      "estado": "en_curso",
-      "conocen": 0
-    },
-    {
-      "id": "G-5",
-      "titulo": "El PO tiene costos, Brooks y semáforo de cada semana (3 skills corriendo)",
+      "id": "P-5",
+      "titulo": "1 o 2 cafés de Mar del Plata usan la app gratis un mes como piloto",
       "sp": 3,
       "tipo": "Secuencial",
       "depende_de": [
-        "G-4"
+        "P-1",
+        "P-2",
+        "P-3"
       ],
+      "quien_sabe": [
+        "fran"
+      ],
+      "asignado": "fran",
+      "estado": "pendiente",
+      "conocen": 0
+    },
+    {
+      "id": "P-4",
+      "titulo": "Términos y privacidad con los datos reales del responsable",
+      "sp": 2,
+      "tipo": "Paralelizable",
+      "depende_de": [],
       "quien_sabe": [
         "agus"
       ],
@@ -66,41 +68,17 @@
       "conocen": 0
     },
     {
-      "id": "G-6",
-      "titulo": "La arquitectura C4 se mantiene sola con la skill arquitecto-c4",
-      "sp": 3,
-      "tipo": "Paralelizable",
-      "depende_de": [],
+      "id": "P-3",
+      "titulo": "Nos avisa al celular si la app se cae (monitor sobre /actuator/health)",
+      "sp": 1,
+      "tipo": "Secuencial",
+      "depende_de": [
+        "P-1"
+      ],
       "quien_sabe": [
-        "octa"
+        "fran"
       ],
       "asignado": "octa",
-      "estado": "en_curso",
-      "conocen": 0
-    },
-    {
-      "id": "G-7",
-      "titulo": "Cada commit lleva el ID del issue de Plane (hook commit-msg)",
-      "sp": 1,
-      "tipo": "Paralelizable",
-      "depende_de": [],
-      "quien_sabe": [
-        "fran"
-      ],
-      "asignado": "fran",
-      "estado": "pendiente",
-      "conocen": 0
-    },
-    {
-      "id": "P-1",
-      "titulo": "Un café piloto entra a la app desde internet con HTTPS",
-      "sp": 5,
-      "tipo": "Crítica de conocimiento",
-      "depende_de": [],
-      "quien_sabe": [
-        "fran"
-      ],
-      "asignado": "fran",
       "estado": "pendiente",
       "conocen": 1
     },
@@ -120,26 +98,52 @@
       "conocen": 1
     },
     {
-      "id": "P-3",
-      "titulo": "Nos avisa al celular si la app se cae (monitor sobre /actuator/health)",
-      "sp": 1,
-      "tipo": "Secuencial",
-      "depende_de": [
-        "P-1"
-      ],
+      "id": "P-1",
+      "titulo": "Un café piloto entra a la app desde internet con HTTPS",
+      "sp": 5,
+      "tipo": "Crítica de conocimiento",
+      "depende_de": [],
       "quien_sabe": [
         "fran"
       ],
-      "asignado": "octa",
+      "asignado": "fran",
       "estado": "pendiente",
       "conocen": 1
     },
     {
-      "id": "P-4",
-      "titulo": "Términos y privacidad con los datos reales del responsable",
-      "sp": 2,
+      "id": "G-7",
+      "titulo": "Cada commit lleva el ID del issue de Plane (hook commit-msg)",
+      "sp": 1,
       "tipo": "Paralelizable",
       "depende_de": [],
+      "quien_sabe": [
+        "fran"
+      ],
+      "asignado": "fran",
+      "estado": "pendiente",
+      "conocen": 0
+    },
+    {
+      "id": "G-6",
+      "titulo": "La arquitectura C4 se mantiene sola con la skill arquitecto-c4",
+      "sp": 3,
+      "tipo": "Paralelizable",
+      "depende_de": [],
+      "quien_sabe": [
+        "octa"
+      ],
+      "asignado": "octa",
+      "estado": "en_curso",
+      "conocen": 0
+    },
+    {
+      "id": "G-5",
+      "titulo": "El PO tiene costos, Brooks y semáforo de cada semana (3 skills corriendo)",
+      "sp": 3,
+      "tipo": "Secuencial",
+      "depende_de": [
+        "G-4"
+      ],
       "quien_sabe": [
         "agus"
       ],
@@ -148,20 +152,16 @@
       "conocen": 0
     },
     {
-      "id": "P-5",
-      "titulo": "1 o 2 cafés de Mar del Plata usan la app gratis un mes como piloto",
-      "sp": 3,
-      "tipo": "Secuencial",
-      "depende_de": [
-        "P-1",
-        "P-2",
-        "P-3"
-      ],
+      "id": "G-4",
+      "titulo": "equipo.md completo: integrantes, dedicación, objetivos, fechas y costos de infra",
+      "sp": 1,
+      "tipo": "Paralelizable",
+      "depende_de": [],
       "quien_sabe": [
-        "fran"
+        "agus"
       ],
-      "asignado": "fran",
-      "estado": "pendiente",
+      "asignado": "agus",
+      "estado": "en_curso",
       "conocen": 0
     }
   ],
@@ -170,14 +170,14 @@
   "secuencial_sp": 15,
   "deseable": [
     {
-      "id": "P-6",
-      "titulo": "Los pedidos de PedidosYa/Rappi llegan solos a cocina (Fase B/C)",
-      "sp": 8
-    },
-    {
       "id": "P-7",
       "titulo": "El café que lo necesita factura electrónicamente con ARCA (opcional)",
       "sp": 13
+    },
+    {
+      "id": "P-6",
+      "titulo": "Los pedidos de PedidosYa/Rappi llegan solos a cocina (Fase B/C)",
+      "sp": 8
     }
   ],
   "ruta_critica": [
@@ -220,9 +220,9 @@
     }
   },
   "entrantes": {
-    "agus": 1,
     "fran": 3,
-    "octa": 2
+    "octa": 2,
+    "agus": 1
   },
   "revisiones": {
     "fran": 11,
@@ -234,9 +234,9 @@
   "revisiones_pct": {
     "fran": 0.28,
     "gio": 0.23,
-    "facu": 0.17,
+    "octa": 0.12,
     "nico": 0.2,
-    "octa": 0.12
+    "facu": 0.17
   },
   "nuevos": [
     "agus"
@@ -285,29 +285,29 @@
     "nico": "Nicolás"
   },
   "deps_todas": {
-    "G-4": [],
-    "G-5": [
-      "G-3",
-      "G-4"
-    ],
-    "G-6": [],
-    "G-7": [
-      "G-3"
-    ],
-    "P-1": [
-      "PR-35"
-    ],
-    "P-2": [
-      "P-1"
-    ],
-    "P-3": [
-      "P-1"
-    ],
-    "P-4": [],
     "P-5": [
       "P-1",
       "P-2",
       "P-3"
-    ]
+    ],
+    "P-4": [],
+    "P-3": [
+      "P-1"
+    ],
+    "P-2": [
+      "P-1"
+    ],
+    "P-1": [
+      "PR-35"
+    ],
+    "G-7": [
+      "G-3"
+    ],
+    "G-6": [],
+    "G-5": [
+      "G-3",
+      "G-4"
+    ],
+    "G-4": []
   }
 }

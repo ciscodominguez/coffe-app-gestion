@@ -2,7 +2,7 @@
   "semana": "semana-2026-47",
   "desde": "2026-11-16",
   "hasta": "2026-11-22",
-  "fuente": "gestion/plane/tickets.json (tablero reconstruido desde git)",
+  "fuente": "Plane (API)",
   "costo_hora": 18.75,
   "costo_semanal": 692.31,
   "horas_por_sp": 4.0,
@@ -219,6 +219,6 @@
     "Costo: USD 3.000 por mes por integrante → USD 18,75 la hora → USD 692,31 por semana (× 12 ÷ 52), multiplicado por la dedicación de equipo.md.",
     "Capacidad semanal = 40 h × dedicación.",
     "Ninguna tarea tiene horas registradas: las horas se estiman con la equivalencia de equipo.md (1 SP = 4 h). Imputado = horas de lo terminado en la semana + de lo que quedó abierto al cierre.",
-    "Fuente: gestion/plane/tickets.json (tablero reconstruido desde git)."
+    "Fuente: Plane (API)."
   ]
 }
