@@ -2,6 +2,13 @@
 
 Lo escribe la skill `arquitecto-c4` en cada corrida (lo más nuevo arriba).
 
+## 2026-11-23 — `03fd585..e007d8b`
+
+- Commit analizado: `e007d8b` (2026-11-23)
+- Archivos cambiados desde la corrida anterior: 13 (0 de código o despliegue)
+- Diagramas actualizados: ninguno (cambios sin impacto en la arquitectura)
+
+
 ## 2026-11-16 — `13d042b..03fd585`
 
 - Commit analizado: `03fd585` (2026-11-16)

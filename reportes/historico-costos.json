@@ -31,5 +31,16 @@
     "costo_por_sp": 33.28,
     "infra_semana": 2.31,
     "ahorro_semana": 379.62
+  },
+  {
+    "semana": "semana-2026-47",
+    "cargado": 1038.48,
+    "entregado": 450.0,
+    "imputado": 750.0,
+    "no_utilizado": 519.24,
+    "sp_terminados": 6.0,
+    "costo_por_sp": 173.08,
+    "infra_semana": 2.31,
+    "ahorro_semana": 521.55
   }
 ]

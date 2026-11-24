@@ -25,5 +25,14 @@
     "avance": 0.933,
     "pendiente_sp": 14,
     "alertas": 1
+  },
+  {
+    "semana": "semana-2026-47",
+    "semaforo": "verde",
+    "sp_terminados": 6,
+    "velocidad_tp": 19.3,
+    "avance": 0.902,
+    "pendiente_sp": 22,
+    "alertas": 7
   }
 ]

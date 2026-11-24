@@ -2,8 +2,8 @@
 
 Diagramas generados y mantenidos por la skill `arquitecto-c4` (`.claude/skills/arquitecto-c4/`). No se editan a mano: se regeneran desde el código.
 
-- Último commit analizado: `03fd5856f3aaf71a7b6432366b59290a949abd6a` (2026-11-16)
-- Última corrida: 2026-11-16T18:13:02
+- Último commit analizado: `e007d8b0df70e4ebe93248abb4f3f7da571c6db4` (2026-11-23)
+- Última corrida: 2026-11-23T22:18:04
 
 | Nivel | Diagrama |
 |---|---|
